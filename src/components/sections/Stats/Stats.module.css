@@ -1,0 +1,413 @@
+.stats {
+  padding: 48px 0;
+  background: #ffffff;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+/* Image Wrapper */
+.imageWrapper {
+  position: relative;
+  border-radius: 16px;
+  overflow: visible;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  min-height: 380px;
+  background: linear-gradient(135deg, #1e2937 0%, #0f172a 100%);
+  transition: box-shadow 0.3s ease;
+}
+
+.imageWrapper:hover {
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.trucksImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 16px;
+  transition: transform 0.4s ease;
+}
+
+.imageWrapper:hover .trucksImage {
+  transform: scale(1.02);
+}
+
+/* Stats Cards - Cover entire top width of image */
+.statsContainer {
+  position: absolute;
+  top: -20px;
+  left: 0;
+  right: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  z-index: 20;
+  padding: 0 12px;
+}
+
+.statCard {
+  background: white;
+  border-radius: 10px;
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: default;
+  animation: fadeInUp 0.5s ease forwards;
+  opacity: 0;
+}
+
+.statCard:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.statCard:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.statCard:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.statCard:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.statCard:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(34, 197, 94, 0.15);
+  border-color: rgba(34, 197, 94, 0.3);
+  background: #ffffff;
+}
+
+.statNumber {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.1;
+  margin-bottom: 4px;
+  transition: color 0.2s ease;
+}
+
+.statCard:hover .statNumber {
+  color: #22c55e;
+}
+
+.statLabel {
+  font-size: 0.7rem;
+  color: #64748b;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  transition: color 0.2s ease;
+  line-height: 1.3;
+}
+
+.statCard:hover .statLabel {
+  color: #1e293b;
+}
+
+/* Right Content */
+.content {
+  animation: slideInRight 0.6s ease forwards;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.content h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #0f172a;
+  margin-bottom: 20px;
+  transition: color 0.2s ease;
+}
+
+.paragraph {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #475569;
+  margin-bottom: 16px;
+  transition: color 0.2s ease;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.contactButton {
+  background: #1e2937;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+}
+
+.contactButton::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translate(-50%, -50%);
+  transition: width 0.5s ease, height 0.5s ease;
+}
+
+.contactButton:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.contactButton:hover {
+  background: #0f172a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.contactButton:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.bookButton {
+  background: #22c55e;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+}
+
+.bookButton::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.5s ease, height 0.5s ease;
+}
+
+.bookButton:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.bookButton:hover {
+  background: #16a34a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(34, 197, 94, 0.3);
+}
+
+.bookButton:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .stats {
+    padding: 40px 0;
+  }
+  
+  .grid {
+    gap: 36px;
+  }
+  
+  .imageWrapper {
+    min-height: 340px;
+  }
+  
+  .statsContainer {
+    top: -16px;
+    gap: 10px;
+    padding: 0 10px;
+  }
+  
+  .statCard {
+    padding: 14px 10px;
+  }
+  
+  .statNumber {
+    font-size: 1.5rem;
+  }
+  
+  .statLabel {
+    font-size: 0.65rem;
+  }
+  
+  .content h2 {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .stats {
+    padding: 36px 0;
+  }
+  
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .imageWrapper {
+    min-height: 320px;
+    margin-top: 20px;
+  }
+  
+  .statsContainer {
+    top: -20px;
+    gap: 8px;
+    padding: 0 8px;
+  }
+  
+  .statCard {
+    padding: 12px 8px;
+  }
+  
+  .statNumber {
+    font-size: 1.3rem;
+  }
+  
+  .statLabel {
+    font-size: 0.6rem;
+  }
+  
+  .content h2 {
+    font-size: 1.6rem;
+  }
+  
+  .paragraph {
+    font-size: 0.85rem;
+  }
+  
+  .buttonGroup {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats {
+    padding: 32px 0;
+  }
+  
+  .imageWrapper {
+    min-height: 280px;
+    margin-top: 16px;
+  }
+  
+  .statsContainer {
+    position: relative;
+    top: 0;
+    margin-top: -20px;
+    margin-bottom: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    padding: 0;
+  }
+  
+  .statCard {
+    padding: 12px 10px;
+    animation: none;
+    opacity: 1;
+  }
+  
+  .statCard:hover {
+    transform: translateY(-4px);
+  }
+  
+  .statNumber {
+    font-size: 1.2rem;
+  }
+  
+  .statLabel {
+    font-size: 0.55rem;
+  }
+  
+  .content {
+    animation: none;
+  }
+  
+  .content h2 {
+    font-size: 1.4rem;
+  }
+  
+  .buttonGroup {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .contactButton,
+  .bookButton {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 0.85rem;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .statCard,
+  .content,
+  .trucksImage,
+  .contactButton,
+  .bookButton {
+    animation: none;
+    transition: none;
+  }
+  
+  .contactButton::before,
+  .bookButton::before {
+    display: none;
+  }
+}

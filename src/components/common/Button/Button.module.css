@@ -1,0 +1,33 @@
+.button {
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.primary {
+  background: #22c55e;
+  color: white;
+}
+
+.primary:hover {
+  background: #16a34a;
+}
+
+.secondary {
+  background: #1e40af;
+  color: white;
+}
+
+.secondary:hover {
+  background: #1e3a8a;
+}
+
+.sm { padding: 10px 20px; font-size: 0.95rem; }
+.md { padding: 14px 28px; font-size: 1.05rem; }
+.lg { padding: 16px 32px; font-size: 1.1rem; }

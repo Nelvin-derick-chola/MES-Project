@@ -1,0 +1,228 @@
+.whoWeAre {
+  padding: 48px 0;
+  background: #ffffff;
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+/* Left - Text Content */
+.textContent {
+  max-width: 480px;
+}
+
+.sectionLabel {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #22c55e;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.textContent h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.description {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: #475569;
+  margin-bottom: 20px;
+}
+
+.readMoreBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #22c55e;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.readMoreBtn:hover {
+  background: #16a34a;
+  transform: translateY(-2px);
+}
+
+/* Right - Visual Banner */
+.visualBanner {
+  position: relative;
+  background: #0f172a;
+  border-radius: 20px;
+  height: 380px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 40px 36px;
+  color: white;
+}
+
+.bannerContent {
+  position: relative;
+  z-index: 10;
+  max-width: 340px;
+}
+
+.welcome {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  margin-bottom: 6px;
+}
+
+.logoText {
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+
+.express {
+  color: #22c55e;
+}
+
+.tagline {
+  font-size: 0.95rem;
+  color: #cbd5e1;
+  margin-bottom: 28px;
+}
+
+.icons {
+  display: flex;
+  gap: 12px;
+}
+
+.iconCircle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  transition: all 0.2s ease;
+}
+
+.iconCircle svg {
+  width: 20px;
+  height: 20px;
+}
+
+.iconCircle:hover {
+  background: #22c55e;
+  color: white;
+  transform: scale(1.05);
+}
+
+/* Globe Decoration */
+.globeContainer {
+  position: absolute;
+  right: -40px;
+  bottom: -60px;
+  opacity: 0.15;
+}
+
+.globe {
+  color: #22c55e;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .whoWeAre {
+    padding: 40px 0;
+  }
+  
+  .contentGrid {
+    gap: 36px;
+  }
+  
+  .textContent h2 {
+    font-size: 1.75rem;
+  }
+  
+  .visualBanner {
+    height: 360px;
+    padding: 32px 28px;
+  }
+  
+  .logoText {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .whoWeAre {
+    padding: 36px 0;
+  }
+  
+  .contentGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .textContent {
+    max-width: 100%;
+  }
+  
+  .visualBanner {
+    height: 320px;
+    padding: 36px 32px;
+  }
+  
+  .textContent h2 {
+    font-size: 1.6rem;
+  }
+  
+  .description {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .whoWeAre {
+    padding: 32px 0;
+  }
+  
+  .contentGrid {
+    gap: 32px;
+  }
+  
+  .visualBanner {
+    height: 280px;
+    padding: 28px 24px;
+  }
+  
+  .logoText {
+    font-size: 1.8rem;
+  }
+  
+  .tagline {
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+  }
+  
+  .iconCircle {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .readMoreBtn {
+    padding: 10px 20px;
+    font-size: 0.85rem;
+  }
+}

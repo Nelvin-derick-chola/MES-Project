@@ -1,0 +1,322 @@
+.ctaSection {
+  width: 100%;
+  max-width: 100%;
+  padding: clamp(24px, 4vw, 40px) clamp(16px, 3vw, 24px);
+  background: #ffffff;
+  overflow-x: hidden;
+}
+
+.ctaWrapper {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: clamp(24px, 4vw, 32px);
+  max-width: 1100px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+/* Left Content */
+.ctaContent {
+  animation: fadeInLeft 0.5s ease forwards;
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.ctaCard {
+  padding: clamp(28px, 4vw, 40px);
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  border-radius: 24px;
+  color: white;
+  box-shadow: 0 20px 40px rgba(34, 197, 94, 0.2);
+}
+
+.ctaTitle {
+  font-size: clamp(1.4rem, 3.5vw, 1.8rem);
+  font-weight: 700;
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.ctaText {
+  font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+  opacity: 0.95;
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.ctaPrimary {
+  padding: 12px 28px;
+  background: white;
+  border: none;
+  border-radius: 40px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #22c55e;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.ctaPrimary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  background: #f8fafc;
+}
+
+.ctaSecondary {
+  padding: 12px 28px;
+  background: transparent;
+  border: 2px solid white;
+  border-radius: 40px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: white;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.ctaSecondary:hover {
+  background: white;
+  color: #22c55e;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Right Content - QR Code */
+.qrCodeWrapper {
+  animation: fadeInRight 0.5s ease 0.1s forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.qrCodeCard {
+  background: white;
+  border-radius: 20px;
+  padding: 24px 20px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  border: 1px solid #f0fdf4;
+  transition: all 0.3s ease;
+}
+
+.qrCodeCard:hover {
+  box-shadow: 0 20px 40px rgba(34, 197, 94, 0.1);
+  transform: translateY(-2px);
+}
+
+.qrCodeHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.qrCodeIcon {
+  font-size: 24px;
+}
+
+.qrCodeTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.qrCodeContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.qrCodeLink {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.qrCodeLink:hover {
+  transform: scale(1.02);
+}
+
+.qrCode {
+  border-radius: 12px;
+  padding: 8px;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.qrCodeInstruction {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.qrCodeButton {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #25D366;
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  transition: all 0.25s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.qrCodeButton:hover {
+  background: #128C7E;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(37, 211, 102, 0.25);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .ctaWrapper {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+  }
+  
+  .qrCodeWrapper {
+    max-width: 350px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .ctaCard {
+    padding: 32px 24px;
+    border-radius: 20px;
+  }
+  
+  .ctaTitle {
+    font-size: 1.3rem;
+  }
+  
+  .qrCodeCard {
+    padding: 20px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ctaSection {
+    padding: 20px 16px;
+  }
+  
+  .ctaWrapper {
+    gap: 20px;
+  }
+  
+  .ctaCard {
+    padding: 24px 20px;
+    border-radius: 16px;
+  }
+  
+  .ctaTitle {
+    font-size: 1.2rem;
+  }
+  
+  .ctaText {
+    font-size: 0.8rem;
+    margin-bottom: 20px;
+  }
+  
+  .ctaButtons {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .ctaPrimary,
+  .ctaSecondary {
+    width: 100%;
+    padding: 12px 20px;
+    white-space: normal;
+    text-align: center;
+  }
+  
+  .qrCodeCard {
+    padding: 18px 14px;
+  }
+  
+  .qrCodeTitle {
+    font-size: 0.9rem;
+  }
+  
+  .qrCodeContainer svg {
+    width: 120px !important;
+    height: 120px !important;
+  }
+  
+  .qrCodeInstruction {
+    font-size: 0.7rem;
+  }
+  
+  .qrCodeButton {
+    padding: 8px 16px;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .ctaSection {
+    padding: 16px 12px;
+  }
+  
+  .ctaCard {
+    padding: 20px 16px;
+  }
+  
+  .ctaTitle {
+    font-size: 1.1rem;
+  }
+  
+  .qrCodeContainer svg {
+    width: 100px !important;
+    height: 100px !important;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .ctaContent,
+  .qrCodeWrapper {
+    animation: none;
+    opacity: 1;
+  }
+  
+  .ctaPrimary:hover,
+  .ctaSecondary:hover,
+  .qrCodeLink:hover,
+  .qrCodeButton:hover,
+  .qrCodeCard:hover {
+    transform: none;
+  }
+}
