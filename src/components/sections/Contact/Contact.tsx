@@ -1,32 +1,76 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
-import styles from './Contact.module.css';  // ← MAKE SURE THIS LINE EXISTS
+import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import styles from './Contact.module.css';
 
 export const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '',
+    email: '',
     subject: '',
     message: '',
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    //Clear error when user starts typing
+    if (error) setError(null);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    setTimeout(() => {
-      console.log('Form submitted:', formData);
-      alert('Thank you for contacting us! We will get back to you shortly.');
-      setFormData({ name: '', subject: '', message: '' });
-      setIsSubmitting(false);
-    }, 1000);
-  };
+    setError(null);
+
+    //validation logic...
+    if (!formData.name || !formData.email || !formData.subject) {
+        setError('Please fill in all required fields');
+        setIsSubmitting(false);
+        return;
+    }
+
+    try {
+        //Call to Laravel API endpoint
+        const response = await fetch('/api/v1/contact', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name: formData.name,
+                email: formData.email,
+                subject: formData.subject,
+                message: formData.message,
+            }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            setSubmitted(true);
+            // Reset form...
+            setFormData({
+              name: '',
+                email: '',
+                subject: '',
+                message: '',
+
+            });
+            
+        } else {
+            setError(data.message || 'Failed to send message. Please try again.');
+        }
+    } catch (err) {
+        console.error('Submit error:', err);
+        setError('Network error. Please check your connection and try again.');
+    } finally {
+        setIsSubmitting(false);
+    }
+};
 
   return (
     <section className={styles.contact}>
@@ -42,6 +86,22 @@ export const Contact: React.FC = () => {
         {/* Left Column - Contact Form */}
         <div className={styles.formColumn}>
           <form onSubmit={handleSubmit} className={styles.form}>
+            {/* Success Message */}
+            {submitted && (
+              <div className={styles.successMessage}>
+                <CheckCircle size={18} />
+                <span>Message sent successfully! We'll get back to you soon.</span>
+              </div>
+            )}
+            
+            {/* Error Message */}
+            {error && (
+              <div className={styles.errorMessage}>
+                <AlertCircle size={18} />
+                <span>{error}</span>
+              </div>
+            )}
+
             <div className={styles.formGroup}>
               <label htmlFor="name" className={styles.label}>
                 Name <span className={styles.required}>*</span>
@@ -55,6 +115,24 @@ export const Contact: React.FC = () => {
                 required
                 className={styles.input}
                 placeholder="Enter your full name"
+                disabled={isSubmitting}
+              />
+            </div>
+
+            <div className={styles.formGroup}>
+              <label htmlFor="email" className={styles.label}>
+                Email <span className={styles.required}>*</span>
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                className={styles.input}
+                placeholder="your@email.com"
+                disabled={isSubmitting}
               />
             </div>
 
@@ -71,6 +149,7 @@ export const Contact: React.FC = () => {
                 required
                 className={styles.input}
                 placeholder="What is this regarding?"
+                disabled={isSubmitting}
               />
             </div>
 
@@ -86,6 +165,7 @@ export const Contact: React.FC = () => {
                 rows={6}
                 className={styles.textarea}
                 placeholder="Tell us more about your shipment or query..."
+                disabled={isSubmitting}
               />
             </div>
 
@@ -128,8 +208,8 @@ export const Contact: React.FC = () => {
               </div>
               <div className={styles.infoContent}>
                 <span className={styles.infoLabel}>Phone</span>
-                <a href="tel:+26097126939029" className={styles.infoValue}>
-                  +260 971 269 390-29
+                <a href="tel:+260971269390" className={styles.infoValue}>
+                  +260 971 269 390
                 </a>
               </div>
             </div>

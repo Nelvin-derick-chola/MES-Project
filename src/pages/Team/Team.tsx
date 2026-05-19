@@ -5,11 +5,14 @@ import { Mail, Phone } from 'lucide-react';
 import styles from './Team.module.css';
 import { useScrollToTop } from '../../hooks/useScrollToTop';
 
-// Team member placeholder images
-const placeholderImages = {
-  male: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400',
-  female: 'https://images.unsplash.com/photo-1494790108755-2616c510d128?w=400',
-};
+// Import local images
+import tiggerImage from '../../assets/images/team/tigger-fodden.jpeg';
+import zipiweImage from '../../assets/images/team/zipiwe-banda.jpeg';
+import placeholderMale from '../../assets/images/team/place-holder.jpg';
+import vikas from '../../assets/images/team/vikas.jpeg';
+import musiiwa from '../../assets/images/team/musiiwa.jpeg';
+
+const placeholderFemale = placeholderMale;
 
 // Define the TeamMember interface
 interface TeamMember {
@@ -20,54 +23,61 @@ interface TeamMember {
   image: string;
   email?: string;
   phone?: string;
-  department: 'leadership' | 'operations' | 'finance' | 'customerservice';
+  department: 'leadership' | 'operations' | 'finance' | 'customerservice' | 'sales';
+  imagePosition?: string; // Optional: custom object-position for specific images
 }
 
-// Real Mercury Express Team Members
 const teamMembers: TeamMember[] = [
-  {
+  // ========== LEADERSHIP TEAM ==========
+
+   {
     id: 1,
     name: 'Tigger Fodden',
     position: 'Managing Director',
     bio: 'Leading Mercury Express Logistics with strategic vision and over two decades of industry expertise. Driving growth and innovation across all operations.',
-    image: placeholderImages.male,
+    image: tiggerImage || placeholderMale,
     email: 'tigger@mercury.co.zm',
     phone: '+260 977 301 327',
     department: 'leadership',
+    imagePosition: 'center 10%',
   },
   {
     id: 2,
+    name: 'Vikas Kumar',
+    position: 'Chief Executive Officer (CEO)',
+    bio: 'Vikas brings more than 20 years of experience in distribution, supply chain operations, and business leadership across various organizations. With a strong passion for digital innovation in logistics, he plays a key role in modernizing operations and driving strategic growth within the company. His forward-thinking leadership focuses on integrating technology, improving operational efficiency, and creating customer-centric logistics solutions that meet the demands of today\'s fast-moving business environment.',
+    image: vikas || placeholderMale,
+    email: 'vikas@mercury.co.zm',
+    phone: '+260 971 269 390',
+    department: 'leadership',
+    imagePosition: 'center 10%', // Focus on face
+  },
+ 
+  {
+    id: 3,
     name: 'Zipiwe Banda',
     position: 'Finance Director',
     bio: 'Overseeing all financial operations, ensuring fiscal responsibility and strategic financial planning for Mercury Express Logistics.',
-    image: placeholderImages.female,
+    image: zipiweImage || placeholderFemale,
     email: 'zipiwe@mercury.co.zm',
     phone: '+260 760 000 050',
     department: 'finance',
+    imagePosition: 'center 30%',
   },
   {
-    id: 3,
-    name: 'Audrey Chambika Griffiths',
-    position: 'Head of Retail and Customer Service',
-    bio: 'Leading customer experience initiatives and retail operations, ensuring every client receives exceptional service and support.',
-    image: placeholderImages.female,
-    email: 'audrey@mercury.co.zm',
-    phone: '+260 767 820 918',
-    department: 'customerservice',
-  },
-  {
-    id: 4,
-    name: 'Alex Mwashi',
+    id: 6,
+    name: 'Hlomayi Musiwa',
     position: 'National Operations Manager',
-    bio: 'Managing nationwide logistics operations, coordinating our 11 branch offices and 20+ agent locations across Zambia.',
-    image: placeholderImages.male,
-    email: 'opsmanager@mercury.co.zm',
-    phone: '+260 760 000 007',
+    bio: 'Hlomayi Musiwa leads national operations with a strong focus on service excellence, operational efficiency, and nationwide coordination. His experience in logistics operations ensures smooth execution across the company\'s branch network, helping maintain consistent, reliable service delivery throughout Zambia.',
+    image: musiiwa || placeholderMale,
+    email: 'hlomayi.musiwa@mercury.co.zm',
+    phone: '+260 971 269 392',
     department: 'operations',
+    imagePosition: 'center 15%',
   },
 ];
 
-// Type the departments array
+// Departments array
 interface Department {
   id: string;
   label: string;
@@ -79,6 +89,7 @@ const departments: Department[] = [
   { id: 'finance', label: 'Finance' },
   { id: 'operations', label: 'Operations' },
   { id: 'customerservice', label: 'Customer Service' },
+  { id: 'sales', label: 'Sales & Marketing' },
 ];
 
 export const Team: React.FC = () => {
@@ -89,10 +100,6 @@ export const Team: React.FC = () => {
   const filteredMembers: TeamMember[] = activeDepartment === 'all' 
     ? teamMembers 
     : teamMembers.filter((member: TeamMember) => member.department === activeDepartment);
-
-  const formatPhoneNumber = (phone: string): string => {
-    return phone.replace(/\s+/g, '').replace(/(\d{3})(\d{3})(\d{3})/, '+$1 $2 $3');
-  };
 
   return (
     <main className={styles.team}>
@@ -126,6 +133,7 @@ export const Team: React.FC = () => {
                     src={member.image} 
                     alt={member.name} 
                     className={styles.memberImage}
+                    style={{ objectPosition: member.imagePosition || 'center 25%' }}
                   />
                 </div>
                 <div className={styles.memberInfo}>
@@ -161,42 +169,29 @@ export const Team: React.FC = () => {
         </Container>
       </section>
 
-<section className={styles.statsSection}>
-  <Container>
-    <div className={styles.statsGrid}>
-      <div className={styles.statItem}>
-        <span className={styles.statNumber}>3M</span>
-        <span className={styles.statLabel}>Parcels Delivered</span>
-      </div>
-      <div className={styles.statItem}>
-        <span className={styles.statNumber}>72+</span>
-        <span className={styles.statLabel}>Cities Covered</span>
-      </div>
-      <div className={styles.statItem}>
-        <span className={styles.statNumber}>153+</span>
-        <span className={styles.statLabel}>Registered Customers</span>
-      </div>
-      <div className={styles.statItem}>
-        <span className={styles.statNumber}>10K+</span>
-        <span className={styles.statLabel}>Pick And Packs</span>
-      </div>
-    </div>
-  </Container>
-</section>
-
-      {/* Join Team CTA */}
-      {/* <section className={styles.ctaSection}>
+      {/* Stats Section */}
+      <section className={styles.statsSection}>
         <Container>
-          <div className={styles.ctaCard}>
-            <h2 className={styles.ctaTitle}>Join Our Growing Team</h2>
-            <p className={styles.ctaText}>
-              With 11 branch offices and over 20 agent locations across Zambia, 
-              we're always looking for talented individuals to join Mercury Express Logistics.
-            </p>
-            <button className={styles.ctaButton}>View Career Opportunities</button>
+          <div className={styles.statsGrid}>
+            <div className={styles.statItem}>
+              <span className={styles.statNumber}>3M</span>
+              <span className={styles.statLabel}>Parcels Delivered</span>
+            </div>
+            <div className={styles.statItem}>
+              <span className={styles.statNumber}>72+</span>
+              <span className={styles.statLabel}>Cities Covered</span>
+            </div>
+            <div className={styles.statItem}>
+              <span className={styles.statNumber}>153+</span>
+              <span className={styles.statLabel}>Registered Customers</span>
+            </div>
+            <div className={styles.statItem}>
+              <span className={styles.statNumber}>10K+</span>
+              <span className={styles.statLabel}>Pick And Packs</span>
+            </div>
           </div>
         </Container>
-      </section> */}
+      </section>
     </main>
   );
 };

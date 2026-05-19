@@ -1,97 +1,78 @@
 .missionVision {
-  width: 100%;
-  max-width: 100%;
-  padding: 48px 24px;
-  background: #f8fafc;
+  padding: 80px 0;
+  background: #ffffff;
 }
 
-/* Section Header */
 .header {
   text-align: center;
-  margin-bottom: 40px;
-  width: 100%;
-  max-width: 1280px;
-  margin-left: auto;
-  margin-right: auto;
-  animation: fadeInUp 0.5s ease forwards;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  margin-bottom: 48px;
 }
 
 .title {
-  font-size: 2rem;
+  font-size: clamp(1.8rem, 4vw, 2.2rem);
   font-weight: 700;
   color: #0f172a;
-  margin-bottom: 8px;
-  line-height: 1.2;
+  margin-bottom: 12px;
+  position: relative;
+  display: inline-block;
+}
+
+.title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #22c55e, #16a34a);
+  border-radius: 2px;
 }
 
 .subtitle {
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: #64748b;
+  max-width: 600px;
+  margin: 20px auto 0;
+  line-height: 1.6;
 }
 
-/* Cards Grid */
-.cardsGrid {
+/* 2-Column Grid */
+.grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 32px;
-  width: 100%;
-  max-width: 1280px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
-/* Card */
+/* Cards */
 .card {
   background: white;
   border-radius: 20px;
-  padding: 36px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-  border: 1px solid #f1f5f9;
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  animation: fadeInUp 0.5s ease forwards;
-  opacity: 0;
-}
-
-.card:first-child {
-  animation-delay: 0.1s;
-}
-
-.card:last-child {
-  animation-delay: 0.2s;
+  padding: 32px 28px;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
 }
 
 .card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(34, 197, 94, 0.1);
-  border-color: rgba(34, 197, 94, 0.2);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 35px rgba(34, 197, 94, 0.1);
+  border-color: rgba(34, 197, 94, 0.3);
 }
 
-/* Card Header */
-.cardHeader {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 24px;
-}
-
+/* Icon Wrapper */
 .iconWrapper {
-  width: 56px;
-  height: 56px;
-  background: #f0fdf4;
-  border-radius: 14px;
+  width: 70px;
+  height: 70px;
+  background: rgba(34, 197, 94, 0.1);
+  border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0 auto 20px;
   color: #22c55e;
   transition: all 0.3s ease;
 }
@@ -99,150 +80,103 @@
 .card:hover .iconWrapper {
   background: #22c55e;
   color: white;
-  transform: rotate(5deg) scale(1.05);
+  transform: scale(1.05);
 }
 
-.cardTitle {
-  font-size: 1.1rem;
+/* Typography */
+.card h3 {
+  font-size: 1.3rem;
   font-weight: 700;
-  letter-spacing: 1px;
   color: #0f172a;
-  text-transform: uppercase;
+  margin-bottom: 16px;
 }
 
-/* Card Text */
-.cardText {
+.card p {
   font-size: 0.9rem;
   line-height: 1.7;
   color: #475569;
-  margin-bottom: 20px;
-}
-
-.highlight {
-  color: #22c55e;
-  font-weight: 600;
-}
-
-/* Tagline */
-.tagline {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 14px 18px;
-  background: #f8fafc;
-  border-radius: 12px;
-  border-left: 3px solid #22c55e;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #1e293b;
-  font-style: italic;
-}
-
-.checkIcon {
-  color: #22c55e;
-  flex-shrink: 0;
 }
 
 /* Responsive */
-@media (max-width: 1024px) {
-  .missionVision {
-    padding: 40px 20px;
-  }
-
-  .cardsGrid {
-    gap: 24px;
-  }
-
-  .card {
-    padding: 28px;
-  }
-}
-
 @media (max-width: 768px) {
   .missionVision {
-    padding: 36px 20px;
+    padding: 60px 0;
   }
-
+  
   .header {
-    margin-bottom: 32px;
+    margin-bottom: 36px;
   }
-
+  
   .title {
-    font-size: 1.75rem;
+    font-size: 1.6rem;
   }
-
-  .cardsGrid {
+  
+  .subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .grid {
     grid-template-columns: 1fr;
     gap: 24px;
+    max-width: 450px;
   }
-
+  
   .card {
-    padding: 28px;
+    padding: 28px 24px;
   }
-
-  .cardHeader {
-    margin-bottom: 20px;
+  
+  .card h3 {
+    font-size: 1.2rem;
   }
-
+  
+  .card p {
+    font-size: 0.85rem;
+  }
+  
   .iconWrapper {
-    width: 48px;
-    height: 48px;
+    width: 60px;
+    height: 60px;
+  }
+  
+  .iconWrapper svg {
+    width: 28px;
+    height: 28px;
   }
 }
 
 @media (max-width: 480px) {
   .missionVision {
-    padding: 32px 16px;
+    padding: 48px 0;
   }
-
-  .header {
-    margin-bottom: 28px;
-  }
-
+  
   .title {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
-
+  
   .subtitle {
-    font-size: 0.85rem;
-  }
-
-  .card {
-    padding: 22px;
-    border-radius: 16px;
-  }
-
-  .cardTitle {
-    font-size: 1rem;
-  }
-
-  .cardText {
-    font-size: 0.85rem;
-  }
-
-  .tagline {
-    padding: 12px 14px;
     font-size: 0.8rem;
   }
-
+  
+  .card {
+    padding: 24px 20px;
+  }
+  
+  .card h3 {
+    font-size: 1.1rem;
+  }
+  
   .iconWrapper {
-    width: 44px;
-    height: 44px;
+    width: 55px;
+    height: 55px;
   }
 }
 
-/* Reduced motion preference */
+/* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
-  .header,
-  .card {
-    animation: none;
-    opacity: 1;
-  }
-
   .card:hover {
     transform: none;
   }
-
+  
   .card:hover .iconWrapper {
     transform: none;
   }

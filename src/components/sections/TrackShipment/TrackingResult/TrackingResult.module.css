@@ -1,0 +1,668 @@
+.trackingResult {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px 48px;
+  animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Parcel Section */
+.parcelSection {
+  background: white;
+  border-radius: 28px;
+  padding: 36px 32px;
+  margin-bottom: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.02);
+  transition: all 0.3s ease;
+  animation: cardAppear 0.5s ease 0.1s forwards;
+  opacity: 0;
+}
+
+@keyframes cardAppear {
+  to {
+    opacity: 1;
+  }
+}
+
+.parcelSection:hover {
+  box-shadow: 0 30px 60px rgba(34, 197, 94, 0.08), 0 0 0 1px rgba(34, 197, 94, 0.1);
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 28px;
+}
+
+.sectionTitle svg {
+  color: #22c55e;
+  background: #f0fdf4;
+  padding: 8px;
+  border-radius: 14px;
+  width: 40px;
+  height: 40px;
+}
+
+/* From/To Grid */
+.fromToGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.fromColumn,
+.toColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.columnHeader {
+  margin-bottom: 6px;
+}
+
+.columnTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #22c55e;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding-bottom: 6px;
+  border-bottom: 3px solid #22c55e;
+}
+
+.detailRow {
+  display: flex;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  transition: all 0.2s ease;
+}
+
+.detailRow:hover {
+  transform: translateX(4px);
+}
+
+.detailLabel {
+  min-width: 130px;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.detailValue {
+  color: #0f172a;
+  font-weight: 500;
+}
+
+/* Timeline Section */
+.timelineSection {
+  background: white;
+  border-radius: 28px;
+  padding: 36px 32px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.02);
+  animation: cardAppear 0.5s ease 0.2s forwards;
+  opacity: 0;
+}
+
+/* Status Flow */
+.statusFlow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 12px;
+  margin-bottom: 32px;
+  padding: 20px;
+  background: #f8fafc;
+  border-radius: 60px;
+}
+
+.flowStep {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 30px;
+  background: white;
+  transition: all 0.3s ease;
+  cursor: default;
+  position: relative;
+}
+
+.flowStep.completed {
+  color: #22c55e;
+  background: #f0fdf4;
+}
+
+.flowStep.current {
+  color: white;
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+  font-weight: 600;
+  transform: scale(1.05);
+}
+
+.flowStep:hover {
+  transform: translateY(-2px);
+}
+
+.flowArrow {
+  color: #cbd5e1;
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+
+/* Current Status Banner */
+.currentStatusBanner {
+  padding: 18px 28px;
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border-radius: 20px;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #bbf7d0;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.1); }
+  50% { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0.05); }
+}
+
+.currentStatusText {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #22c55e;
+}
+
+/* Tracking Table */
+.tableContainer {
+  margin-bottom: 32px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+}
+
+.trackingTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.trackingTable th {
+  background: #f8fafc;
+  padding: 18px 20px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: #64748b;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.trackingTable td {
+  padding: 16px 20px;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 0.9rem;
+  color: #0f172a;
+  transition: background 0.2s ease;
+}
+
+.trackingTable tbody tr:hover {
+  background: #f8fafc;
+}
+
+.trackingTable tr:last-child td {
+  border-bottom: none;
+}
+
+.dateCell {
+  color: #64748b;
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Mono', monospace;
+  font-size: 0.85rem;
+}
+
+.cityCell {
+  font-weight: 600;
+}
+
+.statusCell {
+  color: #22c55e;
+  font-weight: 500;
+}
+
+/* Receiver Info Row */
+.receiverRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  padding: 24px 0 8px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.receiverItem {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.receiverItem:hover {
+  transform: translateY(-2px);
+}
+
+.receiverLabel {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.receiverValue {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+/* POD Image */
+.podImageWrapper {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.podImage {
+  max-width: 100%;
+  max-height: 250px;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.podImage:hover {
+  transform: scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .trackingResult {
+    padding: 0 20px 40px;
+  }
+  
+  .parcelSection,
+  .timelineSection {
+    padding: 28px 24px;
+  }
+  
+  .fromToGrid {
+    gap: 24px;
+  }
+  
+  .detailLabel {
+    min-width: 110px;
+  }
+  
+  .statusFlow {
+    border-radius: 40px;
+    padding: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .trackingResult {
+    padding: 0 16px 32px;
+  }
+  
+  .parcelSection,
+  .timelineSection {
+    padding: 24px 20px;
+    border-radius: 24px;
+  }
+  
+  .sectionTitle {
+    font-size: 1.1rem;
+    margin-bottom: 22px;
+  }
+  
+  .sectionTitle svg {
+    width: 36px;
+    height: 36px;
+    padding: 6px;
+  }
+  
+  .fromToGrid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  
+  .detailRow:hover {
+    transform: none;
+  }
+  
+  .statusFlow {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 8px;
+  }
+  
+  .flowArrow {
+    display: none;
+  }
+  
+  .trackingTable th,
+  .trackingTable td {
+    padding: 12px 14px;
+  }
+  
+  .dateCell {
+    white-space: normal;
+    font-size: 0.8rem;
+  }
+  
+  .receiverRow {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .trackingResult {
+    padding: 0 12px 28px;
+  }
+  
+  .parcelSection,
+  .timelineSection {
+    padding: 20px 16px;
+    border-radius: 20px;
+  }
+  
+  .sectionTitle {
+    font-size: 1rem;
+  }
+  
+  .detailRow {
+    flex-direction: column;
+    gap: 2px;
+  }
+  
+  .detailLabel {
+    min-width: auto;
+  }
+  
+  .flowStep {
+    font-size: 0.75rem;
+    padding: 6px 12px;
+  }
+  
+  .currentStatusBanner {
+    padding: 14px 18px;
+  }
+  
+  .currentStatusText {
+    font-size: 0.95rem;
+  }
+  
+  .trackingTable th,
+  .trackingTable td {
+    padding: 10px 10px;
+    font-size: 0.8rem;
+  }
+  
+  .receiverValue {
+    font-size: 0.9rem;
+  }
+}
+
+
+/* Status Message Card */
+.statusMessageCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 24px 28px;
+  background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%);
+  border-radius: 20px;
+  border: 1px solid #dcfce7;
+  margin-bottom: 36px;
+}
+
+.statusMessageIcon {
+  width: 48px;
+  height: 48px;
+  background: #22c55e;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+}
+
+.statusMessageContent {
+  flex: 1;
+}
+
+.statusMessageTitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 4px;
+}
+
+.statusMessageTime {
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+/* Visual Progress Steps */
+.progressSteps {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  padding: 20px 0;
+  position: relative;
+}
+
+.progressStep {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+  position: relative;
+  z-index: 2;
+}
+
+.progressStepIcon {
+  width: 44px;
+  height: 44px;
+  background: #f1f5f9;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+  border: 2px solid #e2e8f0;
+}
+
+.progressStep.completed .progressStepIcon {
+  background: #22c55e;
+  border-color: #22c55e;
+  color: white;
+}
+
+.progressStep.current .progressStepIcon {
+  background: white;
+  border-color: #22c55e;
+  color: #22c55e;
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.15);
+}
+
+.progressStepLabel {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #94a3b8;
+  max-width: 90px;
+  line-height: 1.3;
+}
+
+.progressStep.completed .progressStepLabel {
+  color: #22c55e;
+  font-weight: 600;
+}
+
+.progressStep.current .progressStepLabel {
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.currentIndicator {
+  margin-top: 6px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #22c55e;
+  background: #f0fdf4;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+.progressConnector {
+  flex: 0 0 30px;
+  height: 3px;
+  background: #e2e8f0;
+  margin-top: 22px;
+  position: relative;
+  z-index: 1;
+  transition: background 0.3s ease;
+}
+
+.progressConnector.completed {
+  background: #22c55e;
+}
+
+/* Table Title */
+.tableTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 16px;
+}
+
+/* Latest Row Highlight */
+.latestRow {
+  background: #f0fdf4;
+}
+
+.latestBadge {
+  display: inline-block;
+  margin-left: 10px;
+  padding: 2px 8px;
+  background: #22c55e;
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 20px;
+}
+
+/* Responsive Progress Steps */
+@media (max-width: 900px) {
+  .progressStepLabel {
+    font-size: 0.7rem;
+    max-width: 70px;
+  }
+  
+  .progressConnector {
+    flex: 0 0 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .statusMessageCard {
+    padding: 20px;
+  }
+  
+  .statusMessageIcon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .statusMessageTitle {
+    font-size: 1rem;
+  }
+  
+  .progressSteps {
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+  }
+  
+  .progressStep {
+    flex: 0 0 auto;
+    min-width: 80px;
+  }
+  
+  .progressConnector {
+    display: none;
+  }
+  
+  .progressStepIcon {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+@media (max-width: 480px) {
+  .statusMessageCard {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px 16px;
+  }
+  
+  .progressStep {
+    min-width: 70px;
+  }
+  
+  .progressStepLabel {
+    font-size: 0.65rem;
+    max-width: 65px;
+  }
+  
+  .progressStepIcon {
+    width: 34px;
+    height: 34px;
+  }
+  
+  .latestBadge {
+    display: block;
+    margin-left: 0;
+    margin-top: 4px;
+  }
+}
+
+

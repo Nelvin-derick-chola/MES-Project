@@ -28,9 +28,9 @@ export const Insurance: React.FC = () => {
               <p className={styles.text}>
                 Insurance is available at <strong>2% of the total value</strong> of goods being sent.
               </p>
-              <p className={styles.text}>
-                <strong>Insurance is mandatory for each shipment.</strong>
-              </p>
+              {/* <p className={styles.text}>
+                <strong>Insurance is Optional for each shipment.</strong>
+              </p> */}
             </div>
 
             <div className={styles.section}>

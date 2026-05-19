@@ -320,3 +320,109 @@
     transform: none;
   }
 }
+
+/* QR Code Container - Larger and clearer */
+.qrCodeContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.25rem;
+  padding: 0.5rem;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.qrCodeLink {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.qrCodeLink:hover {
+  transform: scale(1.02);
+}
+
+/* QR Code - Increased size and better contrast */
+.qrCode {
+  display: block;
+  width: 180px;
+  height: 180px;
+  border-radius: 16px;
+}
+
+/* QR Code Instruction */
+.qrCodeInstruction {
+  font-size: 0.75rem;
+  color: #6b7280;
+  text-align: center;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+/* QR Code Card - Better spacing */
+.qrCodeCard {
+  background: white;
+  border-radius: 24px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.qrCodeCard:hover {
+  transform: translateY(-4px);
+}
+
+/* WhatsApp Icon Wrapper */
+.whatsappIconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  border-radius: 50%;
+}
+
+.whatsappIcon {
+  color: white;
+  stroke-width: 1.5;
+}
+
+/* QR Code Header */
+.qrCodeHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.qrCodeTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+/* QR Code Button */
+.qrCodeButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: #25D366;
+  color: white;
+  text-decoration: none;
+  border-radius: 40px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.qrCodeButton:hover {
+  background: #128C7E;
+  transform: translateY(-2px);
+}

@@ -23,17 +23,16 @@ export const MobileApp: React.FC = () => {
     },
   ];
 
-  const handleDownloadAPK = () => {
-    // Link to your APK file - replace with actual APK URL
-    const apkUrl = '/downloads/mercury-express.apk';
-    
-    // Create a temporary link and trigger download
-    const link = document.createElement('a');
-    link.href = apkUrl;
-    link.download = 'Mercury-Express.apk';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  // External URLs
+  const PLAY_STORE_URL = 'https://play.google.com/store/search?q=mercury+logistics&c=apps&hl=en';
+  const APP_STORE_URL = 'https://apps.apple.com/us/app/mercury-logistics/id6467520534'; // Replace with actual App Store link when available
+
+  const handleGooglePlay = () => {
+    window.open(PLAY_STORE_URL, '_blank');
+  };
+
+  const handleAppStore = () => {
+    window.open(APP_STORE_URL, '_blank');
   };
 
   return (
@@ -62,16 +61,34 @@ export const MobileApp: React.FC = () => {
 
             {/* App Store Buttons */}
             <div className={styles.storeButtons}>
-              <button className={styles.storeButton}>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" />
+              <button 
+                className={styles.storeButton}
+                onClick={handleGooglePlay}
+                aria-label="Get it on Google Play"
+              >
+                <img 
+                  src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" 
+                  alt="Google Play" 
+                />
               </button>
-              <button className={styles.storeButton}>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store" />
+              <button 
+                className={styles.storeButton}
+                onClick={handleAppStore}
+                aria-label="Download on the App Store"
+              >
+                <img 
+                  src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" 
+                  alt="App Store" 
+                />
               </button>
-              <button className={styles.apkButton} onClick={handleDownloadAPK}>
+              {/* <button 
+                className={styles.apkButton} 
+                onClick={handleDownloadAPK}
+                aria-label="Download APK"
+              >
                 <Download size={16} />
                 <span>Download APK</span>
-              </button>
+              </button> */}
             </div>
           </div>
 

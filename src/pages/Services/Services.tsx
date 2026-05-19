@@ -1,11 +1,24 @@
 import React from 'react';
 import { Container } from '../../components/layout/Container/Container';
 import { ServicesHero } from '../../components/sections/ServicesHero/ServicesHero';
-import { Plane, Ship, Truck, Warehouse, Globe, ClipboardCheck, Package, Building2 } from 'lucide-react';
+import { Plane, Ship, Truck, Warehouse, Globe, Package, Building2 } from 'lucide-react';
 import styles from './Services.module.css';
 
 import { useScrollToTop } from '../../hooks/useScrollToTop';
 import { CTASection } from '../../components/sections/CTASection/CTASection';
+
+import airFreightImg from '../../assets/images/services/air-freight.jpg';
+import oceanFreightImg from '../../assets/images/services/ocean-freight.jpg';
+import crossBorderImg from '../../assets/images/services/Cross Border Road Freight.jpeg';
+import multimodalImg from '../../assets/images/services/multimodal.jpg';
+import roadFreightImg from '../../assets/images/services/road-freight.jpeg';
+import warehousingImg from '../../assets/images/services/warehousing.jpeg';
+import pharmaceuticalImg from '../../assets/images/services/pharmaceutical.jpg';
+import distributionImg from '../../assets/images/services/distribution.jpeg';
+
+import exportExpressImg from '../../assets/images/services/export-express.jpeg';
+import importExpressImg from '../../assets/images/services/import-express.jpeg';
+import domesticExpressImg from '../../assets/images/services/domestic-express.jpeg';
 
 interface ServiceCard {
   id: number;
@@ -28,7 +41,7 @@ const services: ServiceCard[] = [
       'Door-to-door delivery',
       'Customs clearance expertise',
     ],
-    image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=600',
+    image: airFreightImg,
   },
   {
     id: 2,
@@ -41,7 +54,7 @@ const services: ServiceCard[] = [
       'Door-to-door or door-to-port',
       'Export & import clearance',
     ],
-    image: 'https://images.unsplash.com/photo-1494412651409-8963ce7935a7?w=600',
+    image: oceanFreightImg,
   },
   {
     id: 3,
@@ -54,7 +67,7 @@ const services: ServiceCard[] = [
       'Buyer consolidation',
       'Regional connectivity',
     ],
-    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600',
+    image: crossBorderImg,
   },
   {
     id: 4,
@@ -67,7 +80,7 @@ const services: ServiceCard[] = [
       'Innovative routing',
       'Outstanding delivery system',
     ],
-    image: 'https://images.unsplash.com/photo-1580674285054-bed31e145f59?w=600',
+    image: multimodalImg,
   },
   {
     id: 5,
@@ -80,7 +93,7 @@ const services: ServiceCard[] = [
       'Strategic terminal hubs',
       'Proof of Delivery (POD)',
     ],
-    image: 'https://images.unsplash.com/photo-1580674285054-bed31e145f59?w=600',
+    image: roadFreightImg,
   },
   {
     id: 6,
@@ -93,7 +106,7 @@ const services: ServiceCard[] = [
       'Nationwide distribution',
       'Proof of Delivery (POD)',
     ],
-    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600',
+    image: warehousingImg,
   },
   {
     id: 7,
@@ -106,7 +119,7 @@ const services: ServiceCard[] = [
       'International standards',
       'Proper stock handling',
     ],
-    image: 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=600',
+    image: pharmaceuticalImg,
   },
   {
     id: 8,
@@ -119,20 +132,7 @@ const services: ServiceCard[] = [
       'Complete visibility',
       'Proof of Delivery notes',
     ],
-    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600',
-  },
-  {
-    id: 9,
-    icon: <ClipboardCheck size={32} />,
-    title: 'Customs Clearance',
-    description: 'Complete customs services to move goods across international borders efficiently and quickly.',
-    features: [
-      'Document preparation',
-      'Border post presence',
-      'Airport clearance',
-      'Import & export expertise',
-    ],
-    image: 'https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=600',
+    image: distributionImg,
   },
 ];
 
@@ -180,9 +180,6 @@ export const Services: React.FC = () => {
                       </li>
                     ))}
                   </ul>
-                  <button className={styles.learnMoreBtn}>
-                    Learn More
-                  </button>
                 </div>
               </div>
             ))}
@@ -203,84 +200,111 @@ export const Services: React.FC = () => {
           <div className={styles.expressGrid}>
             {/* Export Express */}
             <div className={styles.expressCard}>
-              <div className={styles.expressIcon}>
-                <Globe size={28} />
+              <div className={styles.cardImage}>
+                <img 
+                  src={exportExpressImg} 
+                  alt="Export Express" 
+                />
+                <div className={styles.imageOverlay} />
+                <div className={styles.cardIcon}>
+                  <Globe size={32} />
+                </div>
               </div>
-              <h3 className={styles.expressTitle}>Export Express</h3>
-              <p className={styles.expressDescription}>
-                Mercury Express Logistics provides global door-to-door shipping solutions for your packages. 
-                With Export Express, you can ship and send your packages, door-to-door and to anywhere in 
-                the world — all you need to do is visit an office near you.
-              </p>
-              <ul className={styles.expressFeatures}>
-                <li className={styles.expressFeature}>
-                  <span className={styles.featureIcon}>✓</span>
-                  <span>Global door-to-door shipping</span>
-                </li>
-                <li className={styles.expressFeature}>
-                  <span className={styles.featureIcon}>✓</span>
-                  <span>Worldwide network coverage</span>
-                </li>
-                <li className={styles.expressFeature}>
-                  <span className={styles.featureIcon}>✓</span>
-                  <span>Visit any office near you</span>
-                </li>
-              </ul>
+              <div className={styles.cardContent}>
+                <h3 className={styles.cardTitle}>Export Express</h3>
+                <p className={styles.cardDescription}>
+                  Mercury Express Logistics provides global door-to-door shipping solutions for your packages. 
+                  With Export Express, you can ship and send your packages, door-to-door and to anywhere in 
+                  the world — all you need to do is visit an office near you.
+                </p>
+                <ul className={styles.featuresList}>
+                  <li className={styles.featureItem}>
+                    <span className={styles.featureIcon}>✓</span>
+                    <span>Global door-to-door shipping</span>
+                  </li>
+                  <li className={styles.featureItem}>
+                    <span className={styles.featureIcon}>✓</span>
+                    <span>Worldwide network coverage</span>
+                  </li>
+                  <li className={styles.featureItem}>
+                    <span className={styles.featureIcon}>✓</span>
+                    <span>Visit any office near you</span>
+                  </li>
+                </ul>
+              </div>
             </div>
 
             {/* Import Express */}
             <div className={styles.expressCard}>
-              <div className={styles.expressIcon}>
-                <Package size={28} />
+              <div className={styles.cardImage}>
+                <img 
+                  src={importExpressImg} 
+                  alt="Import Express" 
+                />
+                <div className={styles.imageOverlay} />
+                <div className={styles.cardIcon}>
+                  <Package size={32} />
+                </div>
               </div>
-              <h3 className={styles.expressTitle}>Import Express</h3>
-              <p className={styles.expressDescription}>
-                With Import Express, we bring the world closer to your doorstep in smarter ways. 
-                Our courier service operates around the clock and throughout the year so we are always 
-                on hand to help, and do our best to transport your goods to wherever you need and at 
-                whatever time you specify.
-              </p>
-              <ul className={styles.expressFeatures}>
-                <li className={styles.expressFeature}>
-                  <span className={styles.featureIcon}>✓</span>
-                  <span>24/7/365 operations</span>
-                </li>
-                <li className={styles.expressFeature}>
-                  <span className={styles.featureIcon}>✓</span>
-                  <span>Doorstep delivery</span>
-                </li>
-                <li className={styles.expressFeature}>
-                  <span className={styles.featureIcon}>✓</span>
-                  <span>Flexible timing options</span>
-                </li>
-              </ul>
+              <div className={styles.cardContent}>
+                <h3 className={styles.cardTitle}>Import Express</h3>
+                <p className={styles.cardDescription}>
+                  With Import Express, we bring the world closer to your doorstep in smarter ways. 
+                  Our courier service operates around the clock and throughout the year so we are always 
+                  on hand to help, and do our best to transport your goods to wherever you need and at 
+                  whatever time you specify.
+                </p>
+                <ul className={styles.featuresList}>
+                  <li className={styles.featureItem}>
+                    <span className={styles.featureIcon}>✓</span>
+                    <span>24/7/365 operations</span>
+                  </li>
+                  <li className={styles.featureItem}>
+                    <span className={styles.featureIcon}>✓</span>
+                    <span>Doorstep delivery</span>
+                  </li>
+                  <li className={styles.featureItem}>
+                    <span className={styles.featureIcon}>✓</span>
+                    <span>Flexible timing options</span>
+                  </li>
+                </ul>
+              </div>
             </div>
 
             {/* Domestic Express */}
             <div className={styles.expressCard}>
-              <div className={styles.expressIcon}>
-                <Truck size={28} />
+              <div className={styles.cardImage}>
+                <img 
+                  src={domesticExpressImg} 
+                  alt="Domestic Express" 
+                />
+                <div className={styles.imageOverlay} />
+                <div className={styles.cardIcon}>
+                  <Truck size={32} />
+                </div>
               </div>
-              <h3 className={styles.expressTitle}>Domestic Express</h3>
-              <p className={styles.expressDescription}>
-                Domestic Express Services offers reliable door-to-door solutions for time-critical 
-                packages to be delivered to any city/town within Zambia or within your city. 
-                We pick up and deliver your packages within agreed delivery times.
-              </p>
-              <ul className={styles.expressFeatures}>
-                <li className={styles.expressFeature}>
-                  <span className={styles.featureIcon}>✓</span>
-                  <span>Nationwide coverage</span>
-                </li>
-                <li className={styles.expressFeature}>
-                  <span className={styles.featureIcon}>✓</span>
-                  <span>Pickup and delivery</span>
-                </li>
-                <li className={styles.expressFeature}>
-                  <span className={styles.featureIcon}>✓</span>
-                  <span>Agreed delivery times</span>
-                </li>
-              </ul>
+              <div className={styles.cardContent}>
+                <h3 className={styles.cardTitle}>Domestic Express</h3>
+                <p className={styles.cardDescription}>
+                  Domestic Express Services offers reliable door-to-door solutions for time-critical 
+                  packages to be delivered to any city/town within Zambia or within your city. 
+                  We pick up and deliver your packages within agreed delivery times.
+                </p>
+                <ul className={styles.featuresList}>
+                  <li className={styles.featureItem}>
+                    <span className={styles.featureIcon}>✓</span>
+                    <span>Nationwide coverage</span>
+                  </li>
+                  <li className={styles.featureItem}>
+                    <span className={styles.featureIcon}>✓</span>
+                    <span>Pickup and delivery</span>
+                  </li>
+                  <li className={styles.featureItem}>
+                    <span className={styles.featureIcon}>✓</span>
+                    <span>Agreed delivery times</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </Container>
@@ -315,7 +339,6 @@ export const Services: React.FC = () => {
 
       {/* CTA Section */}
       <CTASection/>
-
     </main>
   );
 };

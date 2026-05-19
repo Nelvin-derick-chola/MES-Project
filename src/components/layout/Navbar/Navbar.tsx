@@ -5,7 +5,6 @@ import { Button } from '../../common/Button/Button';
 import { Container } from '../Container/Container';
 import logo from '../../../assets/images/MES-logo.png';
 import styles from './Navbar.module.css';
-
 import { TrackModal } from '../../common/TrackModal/TrackModal';
 
 interface DropdownItem {
@@ -29,9 +28,14 @@ const navLinks: NavLink[] = [
     href: '/services',
     hasDropdown: false,
   },
+  // { 
+  //   label: 'Raise a Case', 
+  //   href: '#',
+  //   hasDropdown: false,
+  // },
   { 
     label: 'Company', 
-    href: '/company', 
+    href: '#', 
     hasDropdown: true,
     dropdownItems: [
       { label: 'About Us', href: '/about-us', icon: <Building2 size={20} />, description: 'Learn about Mercury' },
@@ -39,23 +43,20 @@ const navLinks: NavLink[] = [
       { label: 'Contact', href: '/contact-us', icon: <Phone size={20} />, description: 'Get in touch' },
     ]
   },
-  { 
-    label: 'Legal', 
-    href: '/legal', 
-    hasDropdown: true,
-    dropdownItems: [
-      { label: 'Privacy Policy', href: '/privacy', icon: <Shield size={20} />, description: 'Data protection' },
-      { label: 'Indemnity', href: '/indemnity', icon: <FileText size={20} />, description: 'Liability coverage' },
-      { label: 'Restricted Items', href: '/restricted', icon: <AlertTriangle size={20} />, description: 'Prohibited goods' },
-      { label: 'Insurance Coverage', href: '/insurance', icon: <Umbrella size={20} />, description: 'Shipment protection' },
-    ]
-  },
 ];
+
+// External MES URLs
+const MES_URLS = {
+  login: 'https://www.mercury.co.zm/mes/login',
+  register: 'https://www.mercury.co.zm/mes/register',
+  addShipment: 'https://www.mercury.co.zm/mes/addshipment',
+};
 
 export const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAuthDropdownOpen, setIsAuthDropdownOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [openMobileDropdown, setOpenMobileDropdown] = useState<string | null>(null); // ✅ For mobile dropdown
   const location = useLocation();
   const [isTrackModalOpen, setIsTrackModalOpen] = useState(false);
 
@@ -70,24 +71,29 @@ export const Navbar: React.FC = () => {
     setOpenDropdown(null);
   };
 
+  // ✅ Toggle mobile dropdown
+  const toggleMobileDropdown = (label: string) => {
+    setOpenMobileDropdown(openMobileDropdown === label ? null : label);
+  };
+
   const handleTrack = () => {
     setIsTrackModalOpen(true);
     closeMenu();
   };
 
-  const handleBook = () => {
-    console.log('Book collection clicked');
-    closeMenu();
-  };
-
   const handleSignIn = () => {
-    console.log('Sign In clicked');
+    window.location.href = MES_URLS.login;
     setIsAuthDropdownOpen(false);
   };
 
   const handleRegister = () => {
-    console.log('Register clicked');
+    window.location.href = MES_URLS.register;
     setIsAuthDropdownOpen(false);
+  };
+
+  const handleBookCollection = () => {
+    window.location.href = MES_URLS.addShipment;
+    closeMenu();
   };
 
   const isActive = (href: string): boolean => {
@@ -115,7 +121,7 @@ export const Navbar: React.FC = () => {
               </a>
               <a href="tel:+26097126939029" className={styles.contactLink}>
                 <Phone size={14} />
-                <span>+260 971 269 390-29</span>
+                <span>+260 971 269 390</span>
               </a>
               <span className={styles.contactItem}>
                 <Clock size={14} />
@@ -195,7 +201,10 @@ export const Navbar: React.FC = () => {
                 <Search size={16} />
                 <span>Track Shipment</span>
               </button>
-              <button className={`${styles.bookBtn} ${styles.pulseAnimation}`} onClick={handleBook}>
+              <button 
+                className={`${styles.bookBtn} ${styles.pulseAnimation}`}
+                onClick={handleBookCollection}
+              >
                 <Calendar size={16} />
                 <span>Book Collection</span>
               </button>
@@ -247,27 +256,42 @@ export const Navbar: React.FC = () => {
           <div className={styles.mobileMenuContent}>
             {navLinks.map((link) => (
               <div key={link.label} className={styles.mobileNavSection}>
-                <Link 
-                  to={link.href} 
-                  className={`${styles.mobileNavLink} ${isActive(link.href) ? styles.activeMobile : ''}`}
-                  onClick={closeMenu}
-                >
-                  {link.label}
-                </Link>
-                {link.hasDropdown && link.dropdownItems && (
-                  <div className={styles.mobileDropdown}>
-                    {link.dropdownItems.map((item) => (
-                      <Link 
-                        key={item.label} 
-                        to={item.href} 
-                        className={`${styles.mobileDropdownItem} ${location.pathname.startsWith(item.href) ? styles.activeMobileDropdown : ''}`}
-                        onClick={closeMenu}
-                      >
-                        <span className={styles.mobileDropdownIcon}>{item.icon}</span>
-                        <span>{item.label}</span>
-                      </Link>
-                    ))}
-                  </div>
+                {link.hasDropdown ? (
+                  <>
+                    {/* ✅ Dropdown button for Company */}
+                    <button
+                      className={`${styles.mobileDropdownBtn} ${openMobileDropdown === link.label ? styles.activeMobile : ''}`}
+                      onClick={() => toggleMobileDropdown(link.label)}
+                    >
+                      <span>{link.label}</span>
+                      <ChevronDown 
+                        size={18} 
+                        className={`${styles.mobileDropdownIcon} ${openMobileDropdown === link.label ? styles.rotated : ''}`}
+                      />
+                    </button>
+                    {/* ✅ Dropdown items */}
+                    <div className={`${styles.mobileDropdownItems} ${openMobileDropdown === link.label ? styles.open : ''}`}>
+                      {link.dropdownItems?.map((item) => (
+                        <Link 
+                          key={item.label} 
+                          to={item.href} 
+                          className={`${styles.mobileDropdownItem} ${location.pathname.startsWith(item.href) ? styles.activeMobileDropdown : ''}`}
+                          onClick={closeMenu}
+                        >
+                          <span className={styles.mobileDropdownItemIcon}>{item.icon}</span>
+                          <span>{item.label}</span>
+                        </Link>
+                      ))}
+                    </div>
+                  </>
+                ) : (
+                  <Link 
+                    to={link.href} 
+                    className={`${styles.mobileNavLink} ${isActive(link.href) ? styles.activeMobile : ''}`}
+                    onClick={closeMenu}
+                  >
+                    {link.label}
+                  </Link>
                 )}
               </div>
             ))}
@@ -278,7 +302,10 @@ export const Navbar: React.FC = () => {
                 <Search size={20} />
                 <span>Track Shipment</span>
               </button>
-              <button className={`${styles.mobileBookBtn} ${styles.mobilePulse}`} onClick={handleBook}>
+              <button 
+                className={`${styles.mobileBookBtn} ${styles.mobilePulse}`}
+                onClick={handleBookCollection}
+              >
                 <Calendar size={20} />
                 <span>Book Collection</span>
               </button>

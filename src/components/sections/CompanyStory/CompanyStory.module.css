@@ -1,0 +1,351 @@
+/* src/components/sections/CompanyStory/CompanyStory.module.css */
+.companyStory {
+  padding: 80px 0;
+  background: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.companyStory::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.03) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.companyStory::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.03) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.storyWrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.quoteIcon {
+  text-align: center;
+  margin-bottom: 24px;
+  color: #22c55e;
+  opacity: 0.5;
+}
+
+.storyContent {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.title {
+  font-size: clamp(1.8rem, 4vw, 2.2rem);
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 24px;
+  position: relative;
+  display: inline-block;
+}
+
+.title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #22c55e, #16a34a);
+  border-radius: 2px;
+}
+
+.storyText {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.storyText p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #475569;
+  margin-bottom: 20px;
+}
+
+.firstParagraph {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #1e293b;
+}
+
+/* Stats Row */
+.statsRow {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 48px;
+  margin: 48px 0 64px;
+  padding: 32px 0;
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.statBlock {
+  text-align: center;
+  min-width: 120px;
+}
+
+.statNumber {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #22c55e;
+  margin-bottom: 8px;
+}
+
+.statLabel {
+  font-size: 0.85rem;
+  color: #64748b;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Values Grid */
+.valuesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 24px;
+}
+
+.valueCard {
+  text-align: center;
+  padding: 32px 24px;
+  background: #f8fafc;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  border: 1px solid #e2e8f0;
+}
+
+.valueCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 35px rgba(34, 197, 94, 0.1);
+  border-color: #22c55e;
+  background: #ffffff;
+}
+
+.valueIcon {
+  width: 64px;
+  height: 64px;
+  background: rgba(34, 197, 94, 0.1);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  color: #22c55e;
+  transition: all 0.3s ease;
+}
+
+.valueCard:hover .valueIcon {
+  background: #22c55e;
+  color: white;
+  transform: scale(1.05);
+}
+
+.valueTitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 12px;
+}
+
+.valueDescription {
+  font-size: 0.85rem;
+  color: #475569;
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .companyStory {
+    padding: 60px 0;
+  }
+
+  .valuesGrid {
+    gap: 24px;
+  }
+
+  .statsRow {
+    gap: 32px;
+  }
+}
+
+@media (max-width: 900px) {
+  .valuesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .storyText p {
+    font-size: 0.95rem;
+  }
+
+  .firstParagraph {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .companyStory {
+    padding: 50px 0;
+  }
+
+  .statsRow {
+    gap: 24px;
+    padding: 24px 0;
+    margin: 32px 0 48px;
+  }
+
+  .statBlock {
+    min-width: 100px;
+  }
+
+  .statNumber {
+    font-size: 1.6rem;
+  }
+
+  .statLabel {
+    font-size: 0.75rem;
+  }
+
+  .title {
+    font-size: 1.6rem;
+  }
+
+  .valueCard {
+    padding: 24px 20px;
+  }
+
+  .valueIcon {
+    width: 56px;
+    height: 56px;
+  }
+
+  .valueIcon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .valueTitle {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .valuesGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .statsRow {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .statBlock {
+    min-width: calc(50% - 20px);
+  }
+}
+
+@media (max-width: 480px) {
+  .companyStory {
+    padding: 40px 0;
+  }
+
+  .statsRow {
+    gap: 16px;
+  }
+
+  .statBlock {
+    min-width: calc(50% - 8px);
+  }
+
+  .statNumber {
+    font-size: 1.4rem;
+  }
+
+  .statLabel {
+    font-size: 0.7rem;
+  }
+
+  .storyText p {
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  .firstParagraph {
+    font-size: 0.9rem;
+  }
+
+  .quoteIcon svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  .title {
+    font-size: 1.4rem;
+  }
+
+  .valueCard {
+    padding: 20px 16px;
+  }
+
+  .valueIcon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 16px;
+  }
+
+  .valueTitle {
+    font-size: 1rem;
+  }
+
+  .valueDescription {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .statsRow {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .statBlock {
+    min-width: auto;
+    width: 100%;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .valueCard,
+  .valueCard:hover {
+    transform: none;
+  }
+
+  .valueCard:hover .valueIcon {
+    transform: none;
+  }
+}

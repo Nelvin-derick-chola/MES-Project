@@ -1,0 +1,236 @@
+.sidebar {
+  width: 280px;
+  flex-shrink: 0;
+  background: #1e293b;
+  color: #94a3b8;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
+}
+
+.logo {
+  padding: 1.5rem;
+  border-bottom: 1px solid #334155;
+  margin-bottom: 1rem;
+}
+
+.logo h2 {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0 1rem;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  color: #94a3b8;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.navLink:hover {
+  background: #334155;
+  color: white;
+}
+
+.navLink.active {
+
+  color: white;
+}
+
+/* Dropdown Styles */
+.dropdown {
+  margin-bottom: 0.25rem;
+}
+
+.dropdownButton {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s;
+  font-size: 0.875rem;
+}
+
+.dropdownButton:hover {
+  background: #334155;
+  color: white;
+}
+
+.dropdownButton.open {
+  background: #334155;
+  color: white;
+}
+
+.dropdownButton span:first-of-type {
+  flex: 1;
+  text-align: left;
+}
+
+.dropdownMenu {
+  margin-left: 1.5rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+  border-left: 1px solid #334155;
+  animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdownLink {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem 1rem;
+  color: #94a3b8;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: all 0.2s;
+  font-size: 0.8rem;
+}
+
+.dropdownLink:hover {
+  background: #334155;
+  color: white;
+}
+
+.dropdownLink.active {
+  background: #22c55e;
+  color: white;
+}
+
+.pageIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+}
+
+.loadingItem {
+  padding: 0.625rem 1rem;
+  color: #64748b;
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+/* Divider */
+.divider {
+  height: 1px;
+  background: #334155;
+  margin: 1rem 0;
+}
+
+/* Logout Button */
+.logoutButton {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s;
+  width: 100%;
+  text-align: left;
+  font-size: 0.875rem;
+  margin-top: auto;
+}
+
+.logoutButton:hover {
+  background: #ef4444;
+  color: white;
+}
+
+/* Scrollbar */
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+
+
+/* Collapsed sidebar styles */
+.sidebar.collapsed {
+  width: 80px;
+}
+
+.sidebar.collapsed .navLink,
+.sidebar.collapsed .dropdownButton,
+.sidebar.collapsed .logoutButton {
+  justify-content: center;
+  padding: 0.75rem;
+}
+
+.sidebar.collapsed .navLink span,
+.sidebar.collapsed .dropdownButton span,
+.sidebar.collapsed .logoutButton span {
+  display: none;
+}
+
+.sidebar.collapsed .logo h2 {
+  display: none;
+}
+
+.sidebar.collapsed .dropdownMenu {
+  display: none;
+}
+
+.toggleBtn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  width: 100%;
+  text-align: center;
+}
+
+.toggleBtn:hover {
+  color: #22c55e;
+}

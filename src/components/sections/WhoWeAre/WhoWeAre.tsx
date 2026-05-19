@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Container } from '../../layout/Container/Container';
-import { Globe, Truck, Plane, Award } from 'lucide-react';
 import styles from './WhoWeAre.module.css';
+import whoWeAreImage from '../../../assets/images/who-we-are.jpeg';
 
 export const WhoWeAre: React.FC = () => {
   return (
@@ -13,6 +14,7 @@ export const WhoWeAre: React.FC = () => {
             <div className={styles.sectionLabel}>WHO WE ARE</div>
             
             <h2>We are your trusted delivery partner</h2>
+            
             
             <p className={styles.description}>
               We are your delivery partner and we are able to deliver shipments of any kind, 
@@ -27,39 +29,24 @@ export const WhoWeAre: React.FC = () => {
               market by getting your shipments faster and more efficiently.
             </p>
 
-            <button className={styles.readMoreBtn}>
+            <Link to="/about-us" className={styles.readMoreBtn}>
               Read More 
               <span className={styles.arrow}>↗</span>
-            </button>
+            </Link>
           </div>
 
-          {/* Right Side - Visual Banner */}
-          <div className={styles.visualBanner}>
-            <div className={styles.bannerContent}>
-              <div className={styles.welcome}>Welcome To</div>
-              <h3 className={styles.logoText}>
-                MERCURY <span className={styles.express}>EXPRESS LOGISTICS</span>
-              </h3>
-              <p className={styles.tagline}>Local Expertise, International Capabilities</p>
-
-              {/* Decorative Icons */}
-              <div className={styles.icons}>
-                <div className={styles.iconCircle}>
-                  <Plane size={28} />
-                </div>
-                <div className={styles.iconCircle}>
-                  <Truck size={28} />
-                </div>
-                <div className={styles.iconCircle}>
-                  <Award size={28} />
-                </div>
-              </div>
-            </div>
-
-            {/* Globe Background Effect */}
-            <div className={styles.globeContainer}>
-              <Globe size={220} className={styles.globe} />
-              <div className={styles.mapOverlay} />
+          {/* Right Side - Image Banner */}
+          <div className={styles.imageBanner}>
+            <div className={styles.imageWrapper}>
+              <img 
+                src={whoWeAreImage} 
+                alt="Mercury Express Logistics - Trusted Delivery Partner" 
+                className={styles.bannerImage}
+              />
+              <div className={styles.imageOverlay} />
+              {/* <div className={styles.imageCaption}>
+                <span className={styles.captionText}>Effective, Efficient & Excellent</span>
+              </div> */}
             </div>
           </div>
         </div>

@@ -5,7 +5,8 @@
   max-height: 700px;
   overflow: hidden;
   color: white;
-  border-bottom-left-radius: 180px;
+  border-bottom-left-radius: 140px;
+  border-bottom-right-radius: 140px;
 }
 
 .slidesContainer,
@@ -615,17 +616,41 @@
   border-radius: 20px;
 }
 
-/* Ultra-Compact Estimate Result */
+/* Estimate Result - Simplified */
 .estimateResult {
-  margin-top: 12px;
-  padding: 8px 12px;
+  margin-top: 16px;
+  padding: 12px 16px;
   background: #f0fdf4;
-  border-radius: 8px;
+  border-radius: 10px;
   border: 1px solid #dcfce7;
+  text-align: center;
+}
+
+.resultPrice {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  animation: resultSlideIn 0.3s ease;
+  align-items: baseline;
+  justify-content: center;
+  gap: 6px;
+}
+
+.currency {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #22c55e;
+}
+
+.price {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #22c55e;
+  line-height: 1.2;
+}
+
+.resultNote {
+  margin-top: 6px;
+  font-size: 0.7rem;
+  color: #64748b;
+  font-style: italic;
 }
 
 @keyframes resultSlideIn {
@@ -647,31 +672,13 @@
   color: #22c55e;
 }
 
-.resultPrice {
-  display: flex;
-  align-items: baseline;
-  gap: 3px;
-}
-
-.currency {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #22c55e;
-}
-
-.price {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #22c55e;
-  line-height: 1;
-  animation: numberPop 0.3s ease;
-}
-
 .resultDisclaimer {
   display: none;
 }
 
-/* ===================== RESPONSIVE ===================== */
+/* ============================================ */
+/* RESPONSIVE STYLES - MOBILE OPTIMIZED */
+/* ============================================ */
 
 @media (max-width: 1024px) {
   .hero {
@@ -750,6 +757,7 @@
   .hero {
     min-height: 480px;
     border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
   }
 
   .content {
@@ -802,28 +810,57 @@
 
   .heading {
     font-size: 1.7rem;
+    margin-bottom: 12px;
   }
 
   .badge {
-    padding: 5px 14px;
-    font-size: 0.75rem;
+    padding: 4px 12px;
+    font-size: 0.7rem;
+    margin-bottom: 12px;
+  }
+
+  .description {
+    font-size: 0.85rem;
+    line-height: 1.4;
   }
 
   .estimateCard {
     padding: 14px 16px;
+    margin: 0 auto;
+    max-width: 100%;
+    width: 100%;
   }
 
   .locationRow {
     grid-template-columns: 1fr;
+    gap: 10px;
   }
 
   .packageToggle {
     grid-template-columns: 1fr;
-    gap: 4px;
+    gap: 6px;
   }
 
   .packageOption {
     padding: 8px 10px;
+    justify-content: space-between;
+  }
+
+  .packageName {
+    font-size: 0.85rem;
+  }
+
+  .packageRange {
+    font-size: 0.6rem;
+  }
+
+  .weightInput {
+    padding: 10px 50px 10px 12px;
+  }
+
+  .submitButton {
+    padding: 10px;
+    font-size: 0.85rem;
   }
 
   .totalAmount {
@@ -831,8 +868,8 @@
   }
   
   .estimateResult {
-    padding: 6px 10px;
-    margin-top: 10px;
+    padding: 10px 12px;
+    margin-top: 12px;
   }
   
   .resultLabel {
@@ -840,15 +877,87 @@
   }
   
   .price {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
   
   .currency {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
+  }
+  
+  .resultNote {
+    font-size: 0.65rem;
   }
   
   .slide {
     animation: kenBurns 20s ease-in-out infinite alternate;
+  }
+}
+
+/* Extra small devices (≤ 375px) */
+@media (max-width: 375px) {
+  .hero {
+    min-height: 420px;
+  }
+  
+  .content {
+    min-height: 420px;
+    padding: 40px 12px 25px;
+  }
+  
+  .heading {
+    font-size: 1.5rem;
+  }
+  
+  .badge {
+    font-size: 0.65rem;
+    padding: 4px 10px;
+  }
+  
+  .description {
+    font-size: 0.8rem;
+  }
+  
+  .estimateCard {
+    padding: 12px 14px;
+  }
+  
+  .toggleOption {
+    padding: 6px 10px;
+    font-size: 0.75rem;
+  }
+  
+  .label {
+    font-size: 0.65rem;
+  }
+  
+  .sectionLabel {
+    font-size: 0.6rem;
+  }
+  
+  .packageName {
+    font-size: 0.8rem;
+  }
+  
+  .packageIcon {
+    font-size: 1rem;
+  }
+  
+  .weightInput {
+    padding: 8px 45px 8px 10px;
+    font-size: 0.8rem;
+  }
+  
+  .submitButton {
+    padding: 8px;
+    font-size: 0.8rem;
+  }
+  
+  .price {
+    font-size: 1.1rem;
+  }
+  
+  .totalAmount {
+    font-size: 1rem;
   }
 }
 
@@ -876,4 +985,149 @@
   .submitButton::before {
     display: none;
   }
+}
+
+/* API Error */
+.apiError {
+  margin-top: 12px;
+  padding: 10px 14px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: #dc2626;
+}
+
+/* Spinner */
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Detailed Link */
+.detailedLink {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 0.75rem;
+  color: #22c55e;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.detailedLink:hover {
+  color: #16a34a;
+  text-decoration: underline;
+}
+
+/* Disabled states */
+.select:disabled,
+.input:disabled,
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Loading Locations */
+.loadingLocations {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 40px 20px;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+/* Location Error */
+.locationError {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 20px 16px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 12px;
+  color: #dc2626;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.locationError .retryButton {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: white;
+  border: 1px solid #fecaca;
+  border-radius: 20px;
+  color: #dc2626;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.locationError .retryButton:hover {
+  background: #dc2626;
+  color: white;
+  border-color: #dc2626;
+}
+
+/* Fix for long international city names */
+.select {
+  padding: 8px 28px 8px 10px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: #1e293b;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  z-index: 60;
+  width: 100%;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 14px;
+}
+
+/* Dropdown options - allow wrapping in the dropdown menu */
+.select option {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  padding: 8px 10px;
+}
+
+/* Ensure the input group doesn't overflow */
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+  width: 100%;
+}
+
+/* Location row - ensure proper spacing */
+.locationRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  width: 100%;
 }

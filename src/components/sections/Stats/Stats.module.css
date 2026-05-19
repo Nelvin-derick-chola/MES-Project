@@ -253,7 +253,10 @@
   box-shadow: 0 4px 12px rgba(34, 197, 94, 0.2);
 }
 
-/* Responsive */
+/* ============================================ */
+/* RESPONSIVE STYLES - MOBILE OPTIMIZED */
+/* ============================================ */
+
 @media (max-width: 1024px) {
   .stats {
     padding: 40px 0;
@@ -346,18 +349,19 @@
     margin-top: 16px;
   }
   
+  /* Stack stats cards into 2 columns on mobile */
   .statsContainer {
     position: relative;
     top: 0;
     margin-top: -20px;
     margin-bottom: 20px;
     grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
+    gap: 10px;
     padding: 0;
   }
   
   .statCard {
-    padding: 12px 10px;
+    padding: 14px 10px;
     animation: none;
     opacity: 1;
   }
@@ -367,31 +371,108 @@
   }
   
   .statNumber {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
   
   .statLabel {
-    font-size: 0.55rem;
+    font-size: 0.6rem;
   }
   
   .content {
     animation: none;
+    text-align: center;
   }
   
   .content h2 {
     font-size: 1.4rem;
   }
   
+  /* ✅ IMPROVED BUTTON LAYOUT ON MOBILE */
   .buttonGroup {
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
+    margin-top: 24px;
   }
   
   .contactButton,
   .bookButton {
     width: 100%;
-    padding: 12px 20px;
-    font-size: 0.85rem;
+    padding: 14px 20px;
+    font-size: 0.9rem;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  /* Optional: Add icons to buttons for better visual */
+  .contactButton::before {
+    content: '📞';
+    margin-right: 8px;
+    font-size: 0.9rem;
+    background: none;
+    width: auto;
+    height: auto;
+    position: relative;
+    transform: none;
+    transition: none;
+  }
+  
+  .bookButton::before {
+    content: '📦';
+    margin-right: 8px;
+    font-size: 0.9rem;
+    background: none;
+    width: auto;
+    height: auto;
+    position: relative;
+    transform: none;
+    transition: none;
+  }
+  
+  /* Remove the pseudo-element animation on mobile for cleaner look */
+  .contactButton:hover::before,
+  .bookButton:hover::before {
+    width: auto;
+    height: auto;
+  }
+}
+
+/* Small phones (320px and below) */
+@media (max-width: 380px) {
+  .stats {
+    padding: 24px 0;
+  }
+  
+  .content h2 {
+    font-size: 1.2rem;
+  }
+  
+  .paragraph {
+    font-size: 0.8rem;
+  }
+  
+  .statsContainer {
+    gap: 8px;
+  }
+  
+  .statCard {
+    padding: 10px 8px;
+  }
+  
+  .statNumber {
+    font-size: 1.1rem;
+  }
+  
+  .statLabel {
+    font-size: 0.5rem;
+  }
+  
+  .contactButton,
+  .bookButton {
+    padding: 12px 16px;
+    font-size: 0.8rem;
   }
 }
 

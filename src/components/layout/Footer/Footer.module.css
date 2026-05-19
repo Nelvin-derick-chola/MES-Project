@@ -6,325 +6,6 @@
 
 .footerContent {
   display: grid;
-  grid-template-columns: 1.6fr 0.8fr 0.9fr 1.2fr;
-  gap: 32px;
-  padding-bottom: 40px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-/* Company Column */
-.companyColumn {
-  max-width: 100%;
-}
-
-.footerLogo {
-  display: inline-block;
-  margin-bottom: 24px;
-  background: white;
-  padding: 10px 16px;
-  border-radius: 10px;
-}
-
-.footerLogo img {
-  height: 48px;
-  width: auto;
-  transition: opacity 0.2s ease;
-}
-
-.footerLogo:hover img {
-  opacity: 0.85;
-}
-
-.companyDesc {
-  font-size: 0.85rem;
-  line-height: 1.7;
-  color: #94a3b8;
-}
-
-/* Column Titles */
-.columnTitle {
-  font-size: 0.9rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  color: white;
-  margin-bottom: 24px;
-  text-transform: uppercase;
-  position: relative;
-}
-
-.columnTitle::after {
-  content: '';
-  position: absolute;
-  bottom: -8px;
-  left: 0;
-  width: 40px;
-  height: 3px;
-  background: linear-gradient(90deg, #22c55e 0%, #3b82f6 100%);
-  border-radius: 2px;
-}
-
-/* Links Columns */
-.linksList {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.linkItem {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: #94a3b8;
-  text-decoration: none;
-  font-size: 0.85rem;
-  transition: all 0.2s ease;
-}
-
-.linkIcon {
-  color: #22c55e;
-  transition: transform 0.2s ease;
-  flex-shrink: 0;
-}
-
-.linkItem:hover {
-  color: #22c55e;
-}
-
-.linkItem:hover .linkIcon {
-  transform: translateX(3px);
-}
-
-/* Contact Column */
-.contactList {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.contactItem {
-  display: flex;
-  gap: 14px;
-}
-
-.contactIcon {
-  color: #22c55e;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.contactItem > div {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.contactLabel {
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  color: #64748b;
-  text-transform: uppercase;
-}
-
-.contactValue {
-  font-size: 0.9rem;
-  color: #e2e8f0;
-  text-decoration: none;
-  transition: color 0.2s ease;
-  line-height: 1.4;
-  word-break: break-word;
-}
-
-a.contactValue:hover {
-  color: #22c55e;
-}
-
-/* Bottom Bar */
-.bottomBar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px 0 0;
-}
-
-.copyright {
-  font-size: 0.8rem;
-  color: #64748b;
-  text-align: center;
-}
-
-/* Responsive */
-@media (max-width: 1024px) {
-  .footer {
-    padding: 40px 0 20px;
-  }
-  
-  .footerContent {
-    grid-template-columns: 1.4fr 0.9fr 0.9fr 1.1fr;
-    gap: 24px;
-  }
-}
-
-@media (max-width: 900px) {
-  .footerContent {
-    grid-template-columns: 1fr 1fr;
-    gap: 36px 30px;
-  }
-  
-  .companyColumn {
-    grid-column: 1 / -1;
-  }
-}
-
-@media (max-width: 768px) {
-  .footer {
-    padding: 36px 0 16px;
-  }
-  
-  .footerContent {
-    grid-template-columns: 1fr 1fr;
-    gap: 32px 24px;
-    padding-bottom: 32px;
-  }
-  
-  .companyColumn {
-    grid-column: 1 / -1;
-  }
-  
-  .footerLogo {
-    padding: 8px 14px;
-  }
-  
-  .footerLogo img {
-    height: 40px;
-  }
-  
-  .columnTitle {
-    margin-bottom: 18px;
-  }
-  
-  .columnTitle::after {
-    bottom: -6px;
-  }
-  
-  .companyDesc {
-    font-size: 0.8rem;
-  }
-  
-  .bottomBar {
-    padding: 20px 0 0;
-  }
-}
-
-@media (max-width: 480px) {
-  .footer {
-    padding: 32px 0 12px;
-  }
-  
-  .footerContent {
-    grid-template-columns: 1fr;
-    gap: 28px;
-    padding-bottom: 28px;
-  }
-  
-  .companyColumn {
-    grid-column: 1;
-  }
-  
-  .footerLogo {
-    padding: 6px 12px;
-    margin-bottom: 20px;
-  }
-  
-  .footerLogo img {
-    height: 36px;
-  }
-  
-  .companyDesc {
-    font-size: 0.8rem;
-    line-height: 1.6;
-  }
-  
-  .columnTitle {
-    font-size: 0.85rem;
-    margin-bottom: 16px;
-  }
-  
-  .linksList {
-    gap: 10px;
-  }
-  
-  .linkItem {
-    font-size: 0.8rem;
-  }
-  
-  .contactList {
-    gap: 16px;
-  }
-  
-  .contactItem {
-    gap: 12px;
-  }
-  
-  .contactIcon {
-    width: 16px;
-    height: 16px;
-  }
-  
-  .contactLabel {
-    font-size: 0.65rem;
-  }
-  
-  .contactValue {
-    font-size: 0.85rem;
-  }
-  
-  .bottomBar {
-    padding: 16px 0 0;
-  }
-  
-  .copyright {
-    font-size: 0.75rem;
-  }
-}
-
-@media (max-width: 360px) {
-  .footer {
-    padding: 28px 0 10px;
-  }
-  
-  .footerContent {
-    gap: 24px;
-  }
-  
-  .footerLogo img {
-    height: 32px;
-  }
-  
-  .companyDesc {
-    font-size: 0.75rem;
-  }
-  
-  .contactValue {
-    font-size: 0.8rem;
-  }
-}
-
-
-.footer {
-  background: #0f172a;
-  color: #cbd5e1;
-  padding: 48px 0 24px;
-}
-
-.footerContent {
-  display: grid;
   grid-template-columns: 1.6fr 0.8fr 1fr 1.2fr;
   gap: 32px;
   padding-bottom: 40px;
@@ -506,7 +187,86 @@ a.contactValue:hover {
   text-align: center;
 }
 
-/* Responsive */
+/* ============================================ */
+/* MOBILE DROPDOWN STYLES */
+/* ============================================ */
+
+/* Mobile Dropdown Button */
+.mobileDropdownBtn {
+  display: none;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 12px 0;
+  cursor: pointer;
+  position: relative;
+}
+
+.mobileDropdownBtn::after {
+  display: none;
+}
+
+.mobileDropdownIcon {
+  transition: transform 0.3s ease;
+  color: #22c55e;
+}
+
+.mobileDropdownIcon.rotated {
+  transform: rotate(180deg);
+}
+
+/* Mobile Dropdown Items Container */
+.mobileDropdownItems {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.mobileDropdownItems.open {
+  max-height: 500px;
+  transition: max-height 0.5s ease-in;
+}
+
+/* Mobile Links List (inside dropdown) */
+.mobileLinksList {
+  list-style: none;
+  padding: 0 0 12px 16px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mobileLinksList .linkItem {
+  font-size: 0.8rem;
+  padding: 6px 0;
+}
+
+/* Mobile Contact Items (inside dropdown) */
+.mobileContactList {
+  list-style: none;
+  padding: 0 0 12px 16px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mobileContactList .contactItem {
+  gap: 12px;
+}
+
+/* ============================================ */
+/* RESPONSIVE STYLES */
+/* ============================================ */
+
 @media (max-width: 1024px) {
   .footer {
     padding: 40px 0 20px;
@@ -573,6 +333,10 @@ a.contactValue:hover {
   }
 }
 
+/* ============================================ */
+/* MOBILE VIEW (≤ 480px) - DROPDOWNS ACTIVE */
+/* ============================================ */
+
 @media (max-width: 480px) {
   .footer {
     padding: 32px 0 12px;
@@ -580,7 +344,7 @@ a.contactValue:hover {
   
   .footerContent {
     grid-template-columns: 1fr;
-    gap: 28px;
+    gap: 20px;
     padding-bottom: 28px;
   }
   
@@ -604,6 +368,7 @@ a.contactValue:hover {
   
   .socialLinks {
     gap: 8px;
+    justify-content: center;
   }
   
   .socialIcon {
@@ -611,38 +376,31 @@ a.contactValue:hover {
     height: 42px;
   }
   
-  .columnTitle {
-    font-size: 0.85rem;
-    margin-bottom: 16px;
+  /* ✅ Hide default column titles and lists on mobile */
+  .linksColumn .columnTitle,
+  .contactColumn .columnTitle {
+    display: none;
   }
   
-  .linksList {
-    gap: 10px;
+  .linksColumn .linksList,
+  .contactColumn .contactList {
+    display: none;
   }
   
-  .linkItem {
-    font-size: 0.8rem;
+  /* ✅ Show mobile dropdown buttons */
+  .mobileDropdownBtn {
+    display: flex;
   }
   
-  .contactList {
-    gap: 16px;
+  /* Style for the container that holds dropdown button and items */
+  .linksColumn,
+  .contactColumn {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
   
-  .contactItem {
-    gap: 12px;
-  }
-  
-  .contactIcon {
-    width: 16px;
-    height: 16px;
-  }
-  
-  .contactLabel {
-    font-size: 0.65rem;
-  }
-  
-  .contactValue {
-    font-size: 0.85rem;
+  .linksColumn:last-of-type,
+  .contactColumn {
+    border-bottom: none;
   }
   
   .bottomBar {
@@ -660,7 +418,7 @@ a.contactValue:hover {
   }
   
   .footerContent {
-    gap: 24px;
+    gap: 16px;
   }
   
   .footerLogo img {
@@ -679,4 +437,51 @@ a.contactValue:hover {
     width: 38px;
     height: 38px;
   }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 32px 0 12px;
+  }
+  
+  .footerContent {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding-bottom: 28px;
+  }
+  
+  .companyColumn {
+    grid-column: 1;
+    text-align: center;  /* ✅ Center all content in company column */
+  }
+  
+  .footerLogo {
+    display: inline-block;  /* ✅ Already inline-block, but ensure it's not block */
+    padding: 6px 12px;
+    margin-bottom: 20px;
+    margin-left: auto;     /* ✅ Center horizontally */
+    margin-right: auto;    /* ✅ Center horizontally */
+  }
+  
+  .footerLogo img {
+    height: 36px;
+    width: auto;
+  }
+  
+  .companyDesc {
+    font-size: 0.8rem;
+    line-height: 1.6;
+    text-align: center;     /* ✅ Center description text */
+  }
+  
+  .socialLinks {
+    gap: 8px;
+    justify-content: center;  /* ✅ Center social icons */
+  }
+  
+  .socialIcon {
+    width: 42px;
+    height: 42px;
+  }
+  
 }

@@ -1,66 +1,58 @@
 import React from 'react';
 import { Container } from '../../layout/Container/Container';
-import { Lightbulb, Users, Settings, Award } from 'lucide-react';
+import { MapPin, Globe, Users, Truck, CheckCircle, Clock, Shield, Award } from 'lucide-react';
 import styles from './AboutHero.module.css';
-import aboutImage from '../../../assets/images/trucks.jpg';
+import aboutHeroImage from '../../../assets/images/about-hero.png';
 
 export const AboutHero: React.FC = () => {
-  const features = [
-    { icon: <Lightbulb size={18} />, label: 'Innovative Solutions' },
-    { icon: <Users size={18} />, label: 'Customer Support' },
-    { icon: <Settings size={18} />, label: 'Smart Logistics' },
-    { icon: <Award size={18} />, label: 'Industry Expertise' },
-  ];
-
   return (
     <section className={styles.aboutHero}>
       <Container>
         <div className={styles.grid}>
           {/* Left Content */}
           <div className={styles.content}>
-            <span className={styles.breadcrumb}>
-              Home <span className={styles.separator}>›</span> About
-            </span>
+            <div className={styles.breadcrumb}>
+              <span>Home</span>
+              <span className={styles.separator}>/</span>
+              <span>About Us</span>
+            </div>
             
             <h1 className={styles.headline}>
-              Local Expertise -<br />
-              <span className={styles.highlight}>International Capabilities</span>
+              About <span className={styles.highlight}>Mercury Express Logistics</span>
             </h1>
             
             <p className={styles.description}>
-              Mercury Express Logistics wholly owned Zambian company that is a leading 
-              provider of comprehensive logistics and transportation solutions. We began 
-              operations in 1994 under the name of Mercury Couriers, in direct response 
-              to the needs of the customers we diversified our operations and developed 
-              into a full service logistics company, to ensure that we offer our customers 
-              the complete solution. With 11 branch offices and over 20 agent locations and 
-              still growing, we are able to deliver and pick up parcels to any part of the 
-              country!
-              Globally, the company has access to over 200,000 employees that are able to 
-              deliver efficiencies in various service offerings. We have the required knowledge, 
-              employee dedication and strong culture of passion for excellence to provide the 
-              best logistics solutions at very competitive rates.
-              The range of services offered by Mercury Express Logistics includes international 
-              and domestic express delivery, freight forwarding, contract logistics, and online 
-              shopping services.
+              Proudly Zambian-owned, delivering reliable logistics solutions since 2000, 
+              evolving from a local courier service into a trusted full-service logistics 
+              provider with national and global reach.
             </p>
-
+            
             {/* Feature Tags */}
             <div className={styles.features}>
-              {features.map((feature, index) => (
-                <div key={index} className={styles.featureTag}>
-                  <span className={styles.featureIcon}>{feature.icon}</span>
-                  <span>{feature.label}</span>
-                </div>
-              ))}
+              <div className={styles.featureTag}>
+                <span className={styles.featureIcon}>✓</span>
+                <span>Nationwide Coverage</span>
+              </div>
+              <div className={styles.featureTag}>
+                <span className={styles.featureIcon}>✓</span>
+                <span>Global Partnerships</span>
+              </div>
+              <div className={styles.featureTag}>
+                <span className={styles.featureIcon}>✓</span>
+                <span>24/7 Tracking</span>
+              </div>
+              <div className={styles.featureTag}>
+                <span className={styles.featureIcon}>✓</span>
+                <span>Expert Team</span>
+              </div>
             </div>
           </div>
 
           {/* Right Image */}
           <div className={styles.imageWrapper}>
             <img 
-              src={aboutImage} 
-              alt="Mercury Express Logistics Team" 
+              src={aboutHeroImage} 
+              alt="Mercury Express Logistics - About Us" 
               className={styles.image}
             />
             <div className={styles.imageOverlay} />

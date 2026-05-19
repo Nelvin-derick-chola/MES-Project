@@ -1,28 +1,42 @@
-import React from 'react';
 import { HeroCarousel } from '../../components/sections/HeroCarousel/HeroCarousel';
 import { WhoWeAre } from '../../components/sections/WhoWeAre/WhoWeAre';
 import { Services } from '../../components/sections/Services/Services';
 import { Stats } from '../../components/sections/Stats/Stats';
 import { Testimonials } from '../../components/sections/Testimonials/Testimonials';
-import { Contact } from '../../components/sections/Contact/Contact';
+//import { Contact } from '../../components/sections/Contact/Contact';
 import { useScrollToTop } from '../../hooks/useScrollToTop';
 import { MobileApp } from '../../components/sections/MobileApp/MobileApp';
 import { CTASection } from '../../components/sections/CTASection/CTASection';
+import { useMesApi } from '../../hooks/useMesApi';
+import React, { useEffect } from 'react';
+import {FAQS} from '../../components/sections/FAQS/FAQS'
+
 
 export const Home: React.FC = () => {
-  useScrollToTop();
-  
+    useScrollToTop();
+  const { loading: locationsLoading, error: locationsError, locationData, getLocationData } = useMesApi();
+
+  // Fetch location data when Home page mounts
+  useEffect(() => {
+    getLocationData();
+  }, [getLocationData]);
+
   return (
     <>
-      <HeroCarousel />
+      <HeroCarousel 
+        locationData={locationData}
+        locationsLoading={locationsLoading}
+        locationsError={locationsError}
+        onRetryLocations={getLocationData}
+      />
       <WhoWeAre />
       <Services />
       <Stats />
       <MobileApp />
-      <Testimonials />
       <CTASection/>
-      <Contact/>
-
+      <Testimonials />
+      <FAQS/>
+      {/* <Contact/> */}
     </>
   );
 };

@@ -37,7 +37,7 @@
   line-height: 1.6;
 }
 
-/* Services Grid - 9 items */
+/* Services Grid */
 .servicesGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -224,12 +224,12 @@
   color: white;
 }
 
-/* Express Services Section */
+/* Express Services Section - Now with white background to match */
 .expressSection {
   width: 100%;
   max-width: 100%;
-  padding: clamp(32px, 5vw, 48px) 24px;
-  background: #f8fafc;
+  padding: clamp(40px, 6vw, 56px) 24px;
+  background: #ffffff;  /* ✅ Changed from #f8fafc to #ffffff */
   overflow-x: hidden;
 }
 
@@ -244,17 +244,17 @@
 
 .expressCard {
   background: white;
-  border-radius: 20px;
-  padding: clamp(28px, 4vw, 36px) clamp(24px, 3vw, 28px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   border: 1px solid #f0fdf4;
   transition: all 0.3s ease;
   animation: fadeInUp 0.4s ease forwards;
   opacity: 0;
-  text-align: center;
-  height: 100%;
   display: flex;
   flex-direction: column;
+  height: 100%;
+  max-width: 100%;
 }
 
 .expressCard:nth-child(1) {
@@ -269,63 +269,100 @@
 
 .expressCard:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(34, 197, 94, 0.1);
-  border-color: rgba(34, 197, 94, 0.25);
+  box-shadow: 0 20px 40px rgba(34, 197, 94, 0.12);
+  border-color: rgba(34, 197, 94, 0.3);
 }
 
-.expressIcon {
-  width: 72px;
-  height: 72px;
-  margin: 0 auto 20px;
-  background: rgba(34, 197, 94, 0.1);
-  border-radius: 18px;
+/* Express Card - Reuse cardImage, imageOverlay, cardIcon, cardContent from serviceCard */
+.expressCard .cardImage {
+  position: relative;
+  height: 180px;
+  overflow: hidden;
+}
+
+.expressCard .cardImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.expressCard:hover .cardImage img {
+  transform: scale(1.05);
+}
+
+.expressCard .imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: #22c55e;
+  opacity: 0.6;
+}
+
+.expressCard .cardIcon {
+  position: absolute;
+  bottom: -20px;
+  left: 24px;
+  width: 56px;
+  height: 56px;
+  background: white;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #22c55e;
-  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.25s ease;
 }
 
-.expressCard:hover .expressIcon {
+.expressCard:hover .cardIcon {
   background: #22c55e;
   color: white;
-  transform: scale(1.05) rotate(3deg);
 }
 
-.expressTitle {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: #0f172a;
-  margin-bottom: 16px;
-}
-
-.expressDescription {
-  font-size: 0.9rem;
-  line-height: 1.65;
-  color: #475569;
-  margin-bottom: 24px;
+.expressCard .cardContent {
+  padding: 36px 24px 24px;
   flex: 1;
-}
-
-.expressFeatures {
-  list-style: none;
-  padding: 0;
-  margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  text-align: left;
+  max-width: 100%;
 }
 
-.expressFeature {
+.expressCard .cardTitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 8px;
+  word-break: break-word;
+}
+
+.expressCard .cardDescription {
+  font-size: 0.85rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin-bottom: 16px;
+  flex: 1;
+  word-break: break-word;
+}
+
+.expressCard .featuresList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.expressCard .featureItem {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
-  font-size: 0.85rem;
-  color: #1e293b;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: #475569;
+  word-break: break-word;
 }
 
-.expressFeature .featureIcon {
+.expressCard .featureIcon {
   color: #22c55e;
   flex-shrink: 0;
   font-weight: 700;
@@ -495,10 +532,6 @@
   .expressGrid {
     gap: 20px;
   }
-
-  .expressCard {
-    padding: 24px 20px;
-  }
 }
 
 @media (max-width: 900px) {
@@ -524,20 +557,18 @@
     padding: 36px 20px;
   }
 
-  .expressIcon {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 16px;
+  .expressCard .cardImage {
+    height: 160px;
   }
-
-  .expressTitle {
-    font-size: 1.2rem;
-    margin-bottom: 12px;
+  
+  .expressCard .cardContent {
+    padding: 32px 20px 20px;
   }
-
-  .expressDescription {
-    font-size: 0.85rem;
-    margin-bottom: 20px;
+  
+  .expressCard .cardIcon {
+    width: 48px;
+    height: 48px;
+    left: 20px;
   }
 
   .locationsSection {
@@ -571,10 +602,6 @@
     margin: 0 auto;
   }
 
-  .expressCard {
-    padding: 28px 24px;
-  }
-
   .locationTags {
     gap: 8px;
   }
@@ -598,6 +625,11 @@
     height: 48px;
     left: 20px;
   }
+  
+  .cardIcon svg {
+    width: 24px;
+    height: 24px;
+  }
 
   .cardContent {
     padding: 28px 18px 18px;
@@ -611,28 +643,27 @@
     padding: 28px 16px;
   }
 
-  .expressCard {
-    padding: 24px 20px;
-    border-radius: 16px;
+  .expressCard .cardImage {
+    height: 160px;
   }
 
-  .expressIcon {
-    width: 56px;
-    height: 56px;
-    border-radius: 14px;
+  .expressCard .cardContent {
+    padding: 28px 18px 18px;
   }
 
-  .expressTitle {
+  .expressCard .cardIcon {
+    width: 48px;
+    height: 48px;
+    left: 20px;
+  }
+  
+  .expressCard .cardIcon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .expressCard .cardTitle {
     font-size: 1.1rem;
-  }
-
-  .expressDescription {
-    font-size: 0.8rem;
-  }
-
-  .expressFeature {
-    font-size: 0.8rem;
-    gap: 8px;
   }
 
   .locationsSection {
@@ -683,6 +714,11 @@
     height: 44px;
     left: 16px;
   }
+  
+  .cardIcon svg {
+    width: 20px;
+    height: 20px;
+  }
 
   .cardContent {
     padding: 24px 16px 16px;
@@ -709,16 +745,26 @@
     padding: 24px 12px;
   }
 
-  .expressCard {
-    padding: 20px 16px;
+  .expressCard .cardImage {
+    height: 140px;
   }
 
-  .expressIcon {
-    width: 48px;
-    height: 48px;
+  .expressCard .cardContent {
+    padding: 24px 16px 16px;
   }
 
-  .expressTitle {
+  .expressCard .cardIcon {
+    width: 44px;
+    height: 44px;
+    left: 16px;
+  }
+  
+  .expressCard .cardIcon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .expressCard .cardTitle {
     font-size: 1rem;
   }
 
@@ -751,11 +797,13 @@
     transform: none;
   }
 
-  .serviceCard:hover .cardImage img {
+  .serviceCard:hover .cardImage img,
+  .expressCard:hover .cardImage img {
     transform: none;
   }
 
-  .expressCard:hover .expressIcon {
+  .serviceCard:hover .cardIcon,
+  .expressCard:hover .cardIcon {
     transform: none;
   }
 

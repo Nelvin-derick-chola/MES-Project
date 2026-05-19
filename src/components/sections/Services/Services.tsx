@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Container } from '../../layout/Container/Container';
 import styles from './Services.module.css';
 
-import RoadExpress from '../../../assets/images/road-express.jpg';
-import Warehousing from '../../../assets/images/warehousing.jpg';
-import Distribution from '../../../assets/images/distribution.jpg';
-import DomesticExpress from '../../../assets/images/domestic-express.jpg';
-import ExportExpress from '../../../assets/images/export-express.jpg';
-import ImportExpress from '../../../assets/images/import-express.png';
+import RoadExpress from '../../../assets/images/road-express.jpeg';
+import Warehousing from '../../../assets/images/warehousing.jpeg';
+import Distribution from '../../../assets/images/distribution.jpeg';
+import DomesticExpress from '../../../assets/images/domestic-express.jpeg';
+import ExportExpress from '../../../assets/images/export-express.jpeg';
+import ImportExpress from '../../../assets/images/import-express.jpeg';
 
 const services = [
   {

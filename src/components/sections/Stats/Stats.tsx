@@ -1,9 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Container } from '../../layout/Container/Container';
 import styles from './Stats.module.css';
-import trucksImage from '../../../assets/images/trucks.jpg';
+import StatsImage from '../../../assets/images/excellence.jpeg';
 
 export const Stats: React.FC = () => {
+
   return (
     <section className={styles.stats}>
       <Container>
@@ -11,7 +13,7 @@ export const Stats: React.FC = () => {
           {/* Left - Image with Stat Cards Overlay */}
           <div className={styles.imageWrapper}>
             <img 
-              src={trucksImage} 
+              src={StatsImage} 
               alt="Mercury Express Fleet" 
               className={styles.trucksImage}
             />
@@ -46,8 +48,18 @@ export const Stats: React.FC = () => {
               speed has made us Zambia's trusted shipping partner.
             </p>
             <div className={styles.buttonGroup}>
-              <button className={styles.contactButton}>Contact Us</button>
-              <button className={styles.bookButton}>Book Collection</button>
+              {/* ✅ Option 1: Using Link component */}
+              <Link to="/contact-us" className={styles.contactButton}>
+                Contact Us
+              </Link>
+              
+              {/* ✅ Option 2: Using button with navigation */}
+              {/* <button className={styles.bookButton} onClick={handleBookCollection}>
+                
+              </button> */}
+              <Link to="https://www.mercury.co.zm/mes/addshipment" className={styles.bookButton}>
+              Book Collection
+            </Link>
             </div>
           </div>
         </div>

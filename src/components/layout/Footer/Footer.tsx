@@ -1,13 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Container } from '../../layout/Container/Container';
-import { Phone, Mail, Clock, MapPin, ChevronRight } from 'lucide-react';
+import { Phone, Mail, Clock, MapPin, ChevronRight, ChevronDown } from 'lucide-react';
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
 import logo from '../../../assets/images/MES-logo.png';
 import styles from './Footer.module.css';
 
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
+  
+  // ✅ State for mobile dropdowns
+  const [openDropdowns, setOpenDropdowns] = useState({
+    company: false,
+    usefulLinks: false,
+    getInTouch: false
+  });
+
+  const toggleDropdown = (key: keyof typeof openDropdowns) => {
+    setOpenDropdowns(prev => ({
+      ...prev,
+      [key]: !prev[key]
+    }));
+  };
 
   const companyLinks = [
     { label: 'About Us', href: '/about-us' },
@@ -18,25 +32,24 @@ export const Footer: React.FC = () => {
   const usefulLinks = [
     { label: 'Home', href: '/' },
     { label: 'Contact Us', href: '/contact-us' },
-    { label: 'Track Shipment', href: '#' },
-    { label: 'FAQs', href: '/faqs' },
     { label: 'Privacy Policy', href: '/privacy' },
-    { label: 'Terms & Conditions', href: '/terms' },
+    { label: 'Indemnity & Liability', href: '/indemnity' },
+    { label: 'Insurance Coverage', href: '/insurance' },
+    { label: 'Restricted Items', href: '/restricted' },
   ];
 
   const socialLinks = [
-    { icon: <FaFacebookF size={16} />, href: 'https://facebook.com/mercuryexpress', label: 'Facebook' },
+    { icon: <FaFacebookF size={16} />, href: 'https://www.facebook.com/MercuryExpressLogisticsZambia', label: 'Facebook' },
+    { icon: <FaLinkedinIn size={16} />, href: 'https://www.linkedin.com/company/mercury-express-logistics/', label: 'LinkedIn' },
+    { icon: <FaInstagram size={16} />, href: 'https://www.instagram.com/mercuryexpresslogistics?igsh=MTFia2w2dzF5dWNrbw==', label: 'Instagram' },
     { icon: <FaTwitter size={16} />, href: 'https://twitter.com/mercuryexpress', label: 'Twitter' },
-    { icon: <FaLinkedinIn size={16} />, href: 'https://linkedin.com/company/mercuryexpress', label: 'LinkedIn' },
-    { icon: <FaInstagram size={16} />, href: 'https://instagram.com/mercuryexpress', label: 'Instagram' },
   ];
 
   return (
     <footer className={styles.footer}>
       <Container>
-        {/* Main Footer Content */}
         <div className={styles.footerContent}>
-          {/* Column 1 - Company Info */}
+          {/* Column 1 - Company Info (always visible, no dropdown) */}
           <div className={styles.companyColumn}>
             <Link to="/" className={styles.footerLogo}>
               <img src={logo} alt="Mercury Express Logistics" />
@@ -46,7 +59,6 @@ export const Footer: React.FC = () => {
               Globally, the company has access to over 200,000 employees that are able to deliver 
               efficiencies in various service offerings.
             </p>
-            {/* Social Media Links */}
             <div className={styles.socialLinks}>
               {socialLinks.map((social, index) => (
                 <a 
@@ -63,9 +75,24 @@ export const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Column 2 - Company */}
+          {/* Column 2 - Company (with mobile dropdown) */}
           <div className={styles.linksColumn}>
+            {/* Desktop title */}
             <h3 className={styles.columnTitle}>COMPANY</h3>
+            
+            {/* Mobile dropdown button */}
+            <button 
+              className={styles.mobileDropdownBtn}
+              onClick={() => toggleDropdown('company')}
+            >
+              COMPANY
+              <ChevronDown 
+                size={16} 
+                className={`${styles.mobileDropdownIcon} ${openDropdowns.company ? styles.rotated : ''}`}
+              />
+            </button>
+            
+            {/* Desktop links list */}
             <ul className={styles.linksList}>
               {companyLinks.map((link, index) => (
                 <li key={index}>
@@ -76,50 +103,91 @@ export const Footer: React.FC = () => {
                 </li>
               ))}
             </ul>
-          </div>
-
-          {/* Column 3 - Useful Links */}
-          <div className={styles.linksColumn}>
-            <h3 className={styles.columnTitle}>USEFUL LINKS</h3>
-            <ul className={styles.linksList}>
-              {usefulLinks.map((link, index) => (
-                <li key={index}>
-                  {link.href.startsWith('/') ? (
+            
+            {/* Mobile dropdown items */}
+            <div className={`${styles.mobileDropdownItems} ${openDropdowns.company ? styles.open : ''}`}>
+              <ul className={styles.mobileLinksList}>
+                {companyLinks.map((link, index) => (
+                  <li key={index}>
                     <Link to={link.href} className={styles.linkItem}>
                       <ChevronRight size={14} className={styles.linkIcon} />
                       <span>{link.label}</span>
                     </Link>
-                  ) : (
-                    <a 
-                      href={link.href} 
-                      className={styles.linkItem}
-                      onClick={(e) => {
-                        if (link.href === '#') {
-                          e.preventDefault();
-                          // Open track modal - you can add this functionality
-                          console.log('Open track modal');
-                        }
-                      }}
-                    >
-                      <ChevronRight size={14} className={styles.linkIcon} />
-                      <span>{link.label}</span>
-                    </a>
-                  )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Column 3 - Useful Links (with mobile dropdown) */}
+          <div className={styles.linksColumn}>
+            {/* Desktop title */}
+            <h3 className={styles.columnTitle}>USEFUL LINKS</h3>
+            
+            {/* Mobile dropdown button */}
+            <button 
+              className={styles.mobileDropdownBtn}
+              onClick={() => toggleDropdown('usefulLinks')}
+            >
+              USEFUL LINKS
+              <ChevronDown 
+                size={16} 
+                className={`${styles.mobileDropdownIcon} ${openDropdowns.usefulLinks ? styles.rotated : ''}`}
+              />
+            </button>
+            
+            {/* Desktop links list */}
+            <ul className={styles.linksList}>
+              {usefulLinks.map((link, index) => (
+                <li key={index}>
+                  <Link to={link.href} className={styles.linkItem}>
+                    <ChevronRight size={14} className={styles.linkIcon} />
+                    <span>{link.label}</span>
+                  </Link>
                 </li>
               ))}
             </ul>
+            
+            {/* Mobile dropdown items */}
+            <div className={`${styles.mobileDropdownItems} ${openDropdowns.usefulLinks ? styles.open : ''}`}>
+              <ul className={styles.mobileLinksList}>
+                {usefulLinks.map((link, index) => (
+                  <li key={index}>
+                    <Link to={link.href} className={styles.linkItem}>
+                      <ChevronRight size={14} className={styles.linkIcon} />
+                      <span>{link.label}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
-          {/* Column 4 - Get In Touch */}
+          {/* Column 4 - Get In Touch (with mobile dropdown) */}
           <div className={styles.contactColumn}>
+            {/* Desktop title */}
             <h3 className={styles.columnTitle}>GET IN TOUCH</h3>
+            
+            {/* Mobile dropdown button */}
+            <button 
+              className={styles.mobileDropdownBtn}
+              onClick={() => toggleDropdown('getInTouch')}
+            >
+              GET IN TOUCH
+              <ChevronDown 
+                size={16} 
+                className={`${styles.mobileDropdownIcon} ${openDropdowns.getInTouch ? styles.rotated : ''}`}
+              />
+            </button>
+            
+            {/* Desktop contact list */}
             <ul className={styles.contactList}>
               <li className={styles.contactItem}>
                 <Phone size={18} className={styles.contactIcon} />
                 <div>
                   <span className={styles.contactLabel}>CALL</span>
                   <a href="tel:+26097126939029" className={styles.contactValue}>
-                    +260 971 269 390-29
+                    +260 971 269 390
                   </a>
                 </div>
               </li>
@@ -127,8 +195,8 @@ export const Footer: React.FC = () => {
                 <Mail size={18} className={styles.contactIcon} />
                 <div>
                   <span className={styles.contactLabel}>EMAIL</span>
-                  <a href="mailto:Enquiries@Mercury.Co.Zm" className={styles.contactValue}>
-                    Enquiries@Mercury.Co.Zm
+                  <a href="mailto:enquiries@mercury.co.zm" className={styles.contactValue}>
+                    enquiries@mercury.co.zm
                   </a>
                 </div>
               </li>
@@ -147,10 +215,48 @@ export const Footer: React.FC = () => {
                 </div>
               </li>
             </ul>
+            
+            {/* Mobile dropdown contact items */}
+            <div className={`${styles.mobileDropdownItems} ${openDropdowns.getInTouch ? styles.open : ''}`}>
+              <ul className={styles.mobileContactList}>
+                <li className={styles.contactItem}>
+                  <Phone size={18} className={styles.contactIcon} />
+                  <div>
+                    <span className={styles.contactLabel}>CALL</span>
+                    <a href="tel:+26097126939029" className={styles.contactValue}>
+                      +260 971 269 390
+                    </a>
+                  </div>
+                </li>
+                <li className={styles.contactItem}>
+                  <Mail size={18} className={styles.contactIcon} />
+                  <div>
+                    <span className={styles.contactLabel}>EMAIL</span>
+                    <a href="mailto:enquiries@mercury.co.zm" className={styles.contactValue}>
+                      enquiries@mercury.co.zm
+                    </a>
+                  </div>
+                </li>
+                <li className={styles.contactItem}>
+                  <Clock size={18} className={styles.contactIcon} />
+                  <div>
+                    <span className={styles.contactLabel}>WORKING HOURS</span>
+                    <span className={styles.contactValue}>07:45 - 17:15 Hrs</span>
+                  </div>
+                </li>
+                <li className={styles.contactItem}>
+                  <MapPin size={18} className={styles.contactIcon} />
+                  <div>
+                    <span className={styles.contactLabel}>LOCATION</span>
+                    <span className={styles.contactValue}>Plot 6392 Dundudza Chididza Road, Longacres, Lusaka, Zambia</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 
-        {/* Bottom Bar - Copyright Only */}
+        {/* Bottom Bar */}
         <div className={styles.bottomBar}>
           <p className={styles.copyright}>
             © {currentYear} Mercury Express Logistics. All rights reserved.

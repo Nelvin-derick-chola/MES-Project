@@ -1,0 +1,96 @@
+/* src/components/admin/AdminLayout/AdminLayout.module.css */
+
+/* Main Layout Container */
+.adminLayout {
+  display: flex;
+  min-height: 100vh;
+  background: #f8fafc;
+  width: 100%;
+}
+
+/* Main Content Wrapper - Takes remaining space after sidebar */
+.mainWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: calc(100% - 280px);
+  overflow-x: hidden;
+}
+
+/* Content Area - Where Outlet renders */
+.mainContent {
+  flex: 1;
+  padding: 24px;
+  background: #f8fafc;
+  width: 100%;
+}
+
+/* Ensure the outlet content takes full width */
+.mainContent > * {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Optional: Add a container for better content spacing */
+.contentContainer {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Loading State */
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  background: #f8fafc;
+  color: #64748b;
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+  color: #22c55e;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Tablet Responsive */
+@media (max-width: 1024px) {
+  .mainWrapper {
+    width: calc(100% - 80px);
+  }
+  
+  .mainContent {
+    padding: 20px;
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .adminLayout {
+    flex-direction: column;
+  }
+  
+  .mainWrapper {
+    width: 100%;
+    margin-left: 0;
+  }
+  
+  .mainContent {
+    padding: 16px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .mainContent {
+    padding: 12px;
+  }
+}

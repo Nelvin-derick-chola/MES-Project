@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container } from '../../layout/Container/Container';
 import { QRCodeSVG } from 'qrcode.react';
+import { MessageCircle, Send } from 'lucide-react';
 import styles from './CTASection.module.css';
 
 interface CTASectionProps {
@@ -18,28 +19,17 @@ interface CTASectionProps {
 export const CTASection: React.FC<CTASectionProps> = ({
   title = 'Need a Custom Logistics Solution?',
   subtitle = 'Our team of experts is ready to help you find the perfect shipping solution for your business.',
-  primaryButtonText = 'Get a Quote',
-  secondaryButtonText = 'Contact Sales',
+  primaryButtonText = 'Get in Touch',
   onPrimaryClick,
-  onSecondaryClick,
   showQRCode = true,
-  whatsappNumber = '+26097126939029',
-  qrCodeMessage = 'Hello Mercury Express, I need assistance with...',
+  whatsappNumber = '+260760000008',
+  qrCodeMessage = 'Hello Mercury Express, I need your assistance...',
 }) => {
   const handlePrimaryClick = () => {
     if (onPrimaryClick) {
       onPrimaryClick();
     } else {
       console.log('Primary CTA clicked');
-      window.location.href = '/contact-us';
-    }
-  };
-
-  const handleSecondaryClick = () => {
-    if (onSecondaryClick) {
-      onSecondaryClick();
-    } else {
-      console.log('Secondary CTA clicked');
       window.location.href = '/contact-us';
     }
   };
@@ -60,11 +50,6 @@ export const CTASection: React.FC<CTASectionProps> = ({
                 <button className={styles.ctaPrimary} onClick={handlePrimaryClick}>
                   {primaryButtonText}
                 </button>
-                {secondaryButtonText && (
-                  <button className={styles.ctaSecondary} onClick={handleSecondaryClick}>
-                    {secondaryButtonText}
-                  </button>
-                )}
               </div>
             </div>
           </div>
@@ -74,7 +59,9 @@ export const CTASection: React.FC<CTASectionProps> = ({
             <div className={styles.qrCodeWrapper}>
               <div className={styles.qrCodeCard}>
                 <div className={styles.qrCodeHeader}>
-                  <span className={styles.qrCodeIcon}>💬</span>
+                  <div className={styles.whatsappIconWrapper}>
+                    <MessageCircle size={24} className={styles.whatsappIcon} />
+                  </div>
                   <h3 className={styles.qrCodeTitle}>Chat with us on WhatsApp</h3>
                 </div>
                 <div className={styles.qrCodeContainer}>
@@ -86,17 +73,24 @@ export const CTASection: React.FC<CTASectionProps> = ({
                   >
                     <QRCodeSVG 
                       value={whatsappUrl}
-                      size={140}
-                      bgColor="#ffffff"
-                      fgColor="#22c55e"
+                      size={180}
+                      bgColor="#FFFFFF"
+                      fgColor="#000000"
                       level="H"
                       includeMargin={true}
-                      className={styles.qrCode}
+                      imageSettings={{
+                        src: "https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg",
+                        x: undefined,
+                        y: undefined,
+                        height: 36,
+                        width: 36,
+                        excavate: true,
+                      }}
                     />
                   </a>
                 </div>
                 <p className={styles.qrCodeInstruction}>
-                  Scan this QR code with your phone camera to chat with our support team on WhatsApp
+                  Scan with your phone camera to chat with us on WhatsApp
                 </p>
                 <a 
                   href={whatsappUrl} 
@@ -104,7 +98,9 @@ export const CTASection: React.FC<CTASectionProps> = ({
                   rel="noopener noreferrer"
                   className={styles.qrCodeButton}
                 >
-                  Or click here to open WhatsApp
+                  <MessageCircle size={16} />
+                  <span>Open WhatsApp Now</span>
+                  <Send size={14} />
                 </a>
               </div>
             </div>

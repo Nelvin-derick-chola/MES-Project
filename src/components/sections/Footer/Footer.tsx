@@ -85,8 +85,8 @@ export const Footer: React.FC = () => {
                 <Mail size={18} className={styles.contactIcon} />
                 <div>
                   <span className={styles.contactLabel}>EMAIL</span>
-                  <a href="mailto:Enquiries@Mercury.Co.Zm" className={styles.contactValue}>
-                    Enquiries@Mercury.Co.Zm
+                  <a href="mailto:enquiries@mercury.co.zm" className={styles.contactValue}>
+                    enquiries@mercury.co.zm
                   </a>
                 </div>
               </li>
