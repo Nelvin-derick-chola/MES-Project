@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Search, Calendar, LogIn, UserPlus, ChevronDown, Users, Building2, Phone, Shield, FileText, AlertTriangle, Umbrella, Mail, Clock, MapPin } from 'lucide-react';
+import { Menu, X, Search, Calendar, LogIn, UserPlus, ChevronDown, Users, Building2, Phone, Mail, Clock, MapPin } from 'lucide-react';
 import { Button } from '../../common/Button/Button';
 import { Container } from '../Container/Container';
 import logo from '../../../assets/images/MES-logo.png';
