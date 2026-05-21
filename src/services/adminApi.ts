@@ -1,4 +1,3 @@
-// src/services/adminApi.ts
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1';
 
 // ✅ Helper function for authenticated requests
@@ -54,6 +53,59 @@ export interface Section {
   settings: any;
   is_active: boolean;
   content: Record<string, any>;
+}
+
+export interface ServiceCategory {
+  uuid: string;
+  name: string;
+  slug: string;
+  description?: string;
+  icon?: string;
+  color?: string;
+  sort_order?: number;
+  is_active?: boolean;
+  show_on_homepage?: boolean;
+  services_count?: number;
+}
+
+export interface Service {
+  uuid: string;
+  name: string;
+  slug: string;
+  short_description: string;
+  description: string;
+  icon: string;
+  image_url: string | null;
+  banner_image_url: string | null;
+  features: string[];
+  sort_order: number;
+  is_active: boolean;
+  is_featured: boolean;
+  show_on_homepage: boolean;
+  show_on_services_page: boolean;
+  category?: ServiceCategory;
+  category_name?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Testimonial {
+  uuid: string;
+  name: string;
+  email?: string;
+  position?: string;
+  company?: string;
+  content: string;
+  rating: number;
+  avatar_url?: string;
+  sort_order: number;
+  is_active: boolean;
+  is_featured: boolean;
+  is_verified: boolean;
+  verified_at?: string;
+  verification_method?: string;
+  created_at: string;
+  updated_at: string;
 }
 
 // ==================== Team Categories ====================
@@ -227,9 +279,11 @@ export const serviceApi = {
   delete: (uuid: string) => authFetch(`/services/${uuid}`, {
     method: 'DELETE',
   }),
+  
   toggleActive: (uuid: string) => authFetch(`/services/${uuid}/toggle-active`, {
     method: 'PATCH',
   }),
+  
   toggleFeatured: (uuid: string) => authFetch(`/services/${uuid}/toggle-featured`, {
     method: 'PATCH',
   }),
@@ -237,31 +291,100 @@ export const serviceApi = {
 
 // ==================== Testimonials ====================
 export const testimonialApi = {
+  // Public endpoints (no auth required for some)
   getAll: () => authFetch('/testimonials'),
   getById: (uuid: string) => authFetch(`/testimonials/${uuid}`),
-  create: (data: any) => authFetch('/testimonials', {
-    method: 'POST',
-    body: JSON.stringify(data),
-  }),
-  update: (uuid: string, data: any) => authFetch(`/testimonials/${uuid}`, {
-    method: 'PUT',
-    body: JSON.stringify(data),
-  }),
-  delete: (uuid: string) => authFetch(`/testimonials/${uuid}`, {
+  getStats: () => authFetch('/testimonials/stats'),
+  
+  // Admin endpoints (require auth)
+  getAdminAll: () => authFetch('/admin/testimonials'),
+  getAdminById: (uuid: string) => authFetch(`/admin/testimonials/${uuid}`),
+  
+  create: async (data: FormData) => {
+    const token = localStorage.getItem('admin_token');
+    if (!token) throw new Error('No authentication token found');
+    
+    const response = await fetch(`${API_BASE_URL}/admin/testimonials`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json',
+      },
+      body: data,
+    });
+    
+    if (response.redirected) {
+      throw new Error('Authentication failed - redirect detected');
+    }
+    
+    if (!response.ok) {
+      const text = await response.text();
+      if (response.status === 401) {
+        localStorage.removeItem('admin_token');
+        localStorage.removeItem('admin_user');
+        window.location.href = '/admin/login';
+        throw new Error('Session expired');
+      }
+      throw new Error(`HTTP ${response.status}: ${text.substring(0, 200)}`);
+    }
+    
+    return response.json();
+  },
+  
+update: async (uuid: string, data: FormData) => {
+  const token = localStorage.getItem('admin_token');
+  if (!token) throw new Error('No authentication token found');
+  
+  // ✅ Add _method=PUT for Laravel method spoofing
+  data.append('_method', 'PUT');
+  
+  const response = await fetch(`${API_BASE_URL}/admin/testimonials/${uuid}`, {
+    method: 'POST',  // ✅ CHANGE to POST
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'application/json',
+    },
+    body: data,
+  });
+  
+  if (response.redirected) {
+    throw new Error('Authentication failed - redirect detected');
+  }
+  
+  if (!response.ok) {
+    const text = await response.text();
+    if (response.status === 401) {
+      localStorage.removeItem('admin_token');
+      localStorage.removeItem('admin_user');
+      window.location.href = '/admin/login';
+      throw new Error('Session expired');
+    }
+    throw new Error(`HTTP ${response.status}: ${text.substring(0, 200)}`);
+  }
+  
+  return response.json();
+},
+  
+  delete: (uuid: string) => authFetch(`/admin/testimonials/${uuid}`, {
     method: 'DELETE',
   }),
-  toggleActive: (uuid: string) => authFetch(`/testimonials/${uuid}/toggle-active`, {
+  
+  toggleActive: (uuid: string) => authFetch(`/admin/testimonials/${uuid}/toggle-active`, {
     method: 'PATCH',
   }),
-  toggleFeatured: (uuid: string) => authFetch(`/testimonials/${uuid}/toggle-featured`, {
+  
+  toggleFeatured: (uuid: string) => authFetch(`/admin/testimonials/${uuid}/toggle-featured`, {
     method: 'PATCH',
   }),
-  verify: (uuid: string) => authFetch(`/testimonials/${uuid}/verify`, {
-    method: 'PATCH',
+  
+  verify: (uuid: string) => authFetch(`/admin/testimonials/${uuid}/verify`, {
+    method: 'POST',
   }),
-  getStats: () => authFetch('/testimonials/stats'),
+  
+  resendVerification: (uuid: string) => authFetch(`/admin/testimonials/${uuid}/resend-verification`, {
+    method: 'POST',
+  }),
 };
-
 // ==================== Auth ====================
 export const adminAuthApi = {
   login: async (email: string, password: string) => {
@@ -306,7 +429,7 @@ export const adminAuthApi = {
   }),
 };
 
-// ==================== Page & Section Management (Unified) ====================
+// ==================== Page & Section Management ====================
 export const adminApi = {
   // Pages
   getPages: () => authFetch('/admin/pages'),
@@ -333,7 +456,7 @@ export const adminApi = {
   toggleSection: (sectionId: number) =>
     authFetch(`/admin/sections/${sectionId}/toggle`, { method: 'PATCH' }),
   
-  // Team Members (convenience)
+  // Team Members
   getTeamMembers: teamMemberApi.getAll,
   getTeamMember: teamMemberApi.getById,
   createTeamMember: teamMemberApi.create,
@@ -342,7 +465,7 @@ export const adminApi = {
   toggleTeamMemberActive: teamMemberApi.toggleActive,
   toggleTeamMemberFeatured: teamMemberApi.toggleFeatured,
   
-  // Services (convenience)
+  // Services
   getServices: serviceApi.getAll,
   getService: serviceApi.getById,
   createService: serviceApi.create,
@@ -351,23 +474,35 @@ export const adminApi = {
   toggleServiceActive: serviceApi.toggleActive,
   toggleServiceFeatured: serviceApi.toggleFeatured,
   
-  // Service Categories (convenience)
+  // Service Categories
   getServiceCategories: serviceCategoryApi.getAll,
   getServiceCategory: serviceCategoryApi.getById,
   createServiceCategory: serviceCategoryApi.create,
   updateServiceCategory: serviceCategoryApi.update,
   deleteServiceCategory: serviceCategoryApi.delete,
   toggleServiceCategoryActive: serviceCategoryApi.toggleActive,
+  toggleServiceCategoryHomepage: serviceCategoryApi.toggleHomepage,
   
-  // Testimonials (convenience)
-  getTestimonials: testimonialApi.getAll,
-  getTestimonial: testimonialApi.getById,
+  // Testimonials
+  // getTestimonials: testimonialApi.getAll,
+  // getTestimonial: testimonialApi.getById,
+  // createTestimonial: testimonialApi.create,
+  // updateTestimonial: testimonialApi.update,
+  // deleteTestimonial: testimonialApi.delete,
+  // toggleTestimonialActive: testimonialApi.toggleActive,
+  // toggleTestimonialFeatured: testimonialApi.toggleFeatured,
+  // verifyTestimonial: testimonialApi.verify,
+  // resendVerification: testimonialApi.resendVerification,
+  // getTestimonialStats: testimonialApi.getStats,
+
+   getTestimonials: testimonialApi.getAdminAll,  // ✅ Use admin version
+  getTestimonial: testimonialApi.getAdminById,
   createTestimonial: testimonialApi.create,
   updateTestimonial: testimonialApi.update,
   deleteTestimonial: testimonialApi.delete,
   toggleTestimonialActive: testimonialApi.toggleActive,
   toggleTestimonialFeatured: testimonialApi.toggleFeatured,
+  verifyTestimonial: testimonialApi.verify,
+  resendVerification: testimonialApi.resendVerification,
+  getTestimonialStats: testimonialApi.getStats, 
 };
-
-// Export all types
-//export type { Page, Section };

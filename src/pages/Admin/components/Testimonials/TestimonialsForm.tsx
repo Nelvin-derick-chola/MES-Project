@@ -1,35 +1,41 @@
-import React, { useState } from 'react';
-import { Star } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Upload, X, Loader, Star } from 'lucide-react';
+import { RatingStars } from './RatingStars';
 import styles from './Testimonials.module.css';
 
 interface TestimonialFormProps {
   initialData?: any;
-  onSubmit: (data: any) => Promise<void>;
+  onSubmit: (data: FormData) => Promise<void>;
   onCancel: () => void;
+  loading?: boolean;
 }
 
 export const TestimonialForm: React.FC<TestimonialFormProps> = ({
   initialData,
   onSubmit,
   onCancel,
+  loading: externalLoading,
 }) => {
   const [formData, setFormData] = useState({
-    client_name: initialData?.client_name || '',
-    client_position: initialData?.client_position || '',
-    client_company: initialData?.client_company || '',
+    name: initialData?.name || '',
+    email: initialData?.email || '',
+    position: initialData?.position || '',
+    company: initialData?.company || '',
     content: initialData?.content || '',
     rating: initialData?.rating || 5,
-    project_type: initialData?.project_type || '',
-    location: initialData?.location || '',
     sort_order: initialData?.sort_order || 0,
     is_active: initialData?.is_active ?? true,
     is_featured: initialData?.is_featured ?? false,
-    show_on_homepage: initialData?.show_on_homepage ?? true,
   });
-  const [loading, setLoading] = useState(false);
+  
+  const [avatarFile, setAvatarFile] = useState<File | null>(null);
+  const [avatarPreview, setAvatarPreview] = useState<string | null>(initialData?.avatar_url || null);
+  const [internalLoading, setInternalLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const loading = externalLoading || internalLoading;
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -37,152 +43,205 @@ export const TestimonialForm: React.FC<TestimonialFormProps> = ({
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setError(null);
-    
-    try {
-      await onSubmit(formData);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
-    } finally {
-      setLoading(false);
+  const handleRatingChange = (rating: number) => {
+    setFormData(prev => ({ ...prev, rating }));
+  };
+
+  const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      if (!file.type.startsWith('image/')) {
+        setError('Please select an image file');
+        return;
+      }
+      if (file.size > 2 * 1024 * 1024) {
+        setError('Image must be less than 2MB');
+        return;
+      }
+      setAvatarFile(file);
+      setAvatarPreview(URL.createObjectURL(file));
+      setError(null);
     }
   };
 
-  const projectTypes = [
-    'Domestic Express',
-    'International Shipping',
-    'Freight Services',
-    'Warehousing',
-    'Pharmaceutical Warehousing',
-    'Customs Clearance',
-    'Cross Border Freight',
-    'Export Express',
-    'Ocean Freight',
-    'Pick and Pack',
-  ];
+  const removeAvatar = () => {
+    if (avatarPreview && avatarPreview.startsWith('blob:')) {
+      URL.revokeObjectURL(avatarPreview);
+    }
+    setAvatarFile(null);
+    setAvatarPreview(null);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (avatarPreview && avatarPreview.startsWith('blob:')) {
+        URL.revokeObjectURL(avatarPreview);
+      }
+    };
+  }, [avatarPreview]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setInternalLoading(true);
+    setError(null);
+
+    try {
+      const formDataToSend = new FormData();
+      
+      Object.entries(formData).forEach(([key, value]) => {
+        if (value !== undefined && value !== null) {
+          formDataToSend.append(key, String(value));
+        }
+      });
+      
+      if (avatarFile) {
+        formDataToSend.append('avatar', avatarFile);
+      }
+      
+      if (initialData) {
+        formDataToSend.append('_method', 'PUT');
+      }
+      
+      await onSubmit(formDataToSend);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred');
+    } finally {
+      setInternalLoading(false);
+    }
+  };
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
       {error && <div className={styles.formError}>{error}</div>}
       
+      {/* Avatar Upload */}
+      <div className={styles.avatarUpload}>
+        <label>Customer Avatar</label>
+        <div className={styles.avatarPreview}>
+          {avatarPreview ? (
+            <div className={styles.avatarWrapper}>
+              <img src={avatarPreview} alt="Avatar Preview" className={styles.avatarImage} />
+              <button
+                type="button"
+                className={styles.removeAvatarBtn}
+                onClick={removeAvatar}
+              >
+                <X size={16} />
+              </button>
+            </div>
+          ) : (
+            <div className={styles.avatarPlaceholder}>
+              <span>{formData.name?.charAt(0) || 'U'}</span>
+            </div>
+          )}
+        </div>
+        <div className={styles.fileInputWrapper}>
+          <input
+            type="file"
+            id="avatar-upload"
+            accept="image/jpeg,image/png,image/jpg,image.webp"
+            onChange={handleAvatarChange}
+            className={styles.fileInput}
+          />
+          <label htmlFor="avatar-upload" className={styles.fileInputLabel}>
+            <Upload size={16} />
+            Choose Avatar
+          </label>
+        </div>
+        <span className={styles.fileName}>
+          {avatarFile ? avatarFile.name : (initialData?.avatar_url ? 'Current avatar will be replaced' : 'No file chosen')}
+        </span>
+      </div>
+
       <div className={styles.formRow}>
         <div className={styles.formGroup}>
-          <label htmlFor="client_name">Client Name *</label>
+          <label htmlFor="name">Customer Name *</label>
           <input
             type="text"
-            id="client_name"
-            name="client_name"
-            value={formData.client_name}
+            id="name"
+            name="name"
+            value={formData.name}
             onChange={handleChange}
             required
             className={styles.input}
           />
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="client_position">Position</label>
+          <label htmlFor="email">Email (for verification)</label>
           <input
-            type="text"
-            id="client_position"
-            name="client_position"
-            value={formData.client_position}
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
             onChange={handleChange}
             className={styles.input}
+            placeholder="customer@example.com"
+          />
+        </div>
+      </div>
+
+      <div className={styles.formRow}>
+        <div className={styles.formGroup}>
+          <label htmlFor="position">Position</label>
+          <input
+            type="text"
+            id="position"
+            name="position"
+            value={formData.position}
+            onChange={handleChange}
+            className={styles.input}
+            placeholder="e.g., CEO, Manager"
+          />
+        </div>
+        <div className={styles.formGroup}>
+          <label htmlFor="company">Company</label>
+          <input
+            type="text"
+            id="company"
+            name="company"
+            value={formData.company}
+            onChange={handleChange}
+            className={styles.input}
+            placeholder="Company name"
           />
         </div>
       </div>
 
       <div className={styles.formGroup}>
-        <label htmlFor="client_company">Company</label>
-        <input
-          type="text"
-          id="client_company"
-          name="client_company"
-          value={formData.client_company}
-          onChange={handleChange}
-          className={styles.input}
-        />
+        <label>Rating</label>
+        <RatingStars rating={formData.rating} onRatingChange={handleRatingChange} size={24} />
       </div>
 
       <div className={styles.formGroup}>
-        <label htmlFor="content">Testimonial Content *</label>
+        <label htmlFor="content">Testimonial *</label>
         <textarea
           id="content"
           name="content"
           value={formData.content}
           onChange={handleChange}
-          rows={4}
+          rows={5}
           required
-          className={styles.input}
+          className={styles.textarea}
+          placeholder="Share your experience with Mercury Express Logistics..."
         />
       </div>
 
       <div className={styles.formRow}>
         <div className={styles.formGroup}>
-          <label>Rating</label>
-          <div className={styles.ratingInput}>
-            {[1, 2, 3, 4, 5].map((value) => (
-              <button
-                key={value}
-                type="button"
-                onClick={() => setFormData(prev => ({ ...prev, rating: value }))}
-                className={styles.ratingBtn}
-              >
-                <Star
-                  size={24}
-                  className={value <= formData.rating ? styles.filledStar : styles.emptyStar}
-                />
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className={styles.formRow}>
-        <div className={styles.formGroup}>
-          <label htmlFor="project_type">Project Type</label>
-          <select
-            id="project_type"
-            name="project_type"
-            value={formData.project_type}
-            onChange={handleChange}
-            className={styles.select}
-          >
-            <option value="">Select Type</option>
-            {projectTypes.map(type => (
-              <option key={type} value={type}>{type}</option>
-            ))}
-          </select>
-        </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="location">Location</label>
+          <label htmlFor="sort_order">Sort Order</label>
           <input
-            type="text"
-            id="location"
-            name="location"
-            value={formData.location}
+            type="number"
+            id="sort_order"
+            name="sort_order"
+            value={formData.sort_order}
             onChange={handleChange}
+            min="0"
             className={styles.input}
           />
         </div>
       </div>
 
-      <div className={styles.formGroup}>
-        <label htmlFor="sort_order">Sort Order</label>
-        <input
-          type="number"
-          id="sort_order"
-          name="sort_order"
-          value={formData.sort_order}
-          onChange={handleChange}
-          min="0"
-          className={styles.input}
-        />
-      </div>
-
-      <div className={styles.formRow}>
+      <div className={styles.toggleGrid}>
         <div className={styles.formGroup}>
           <label className={styles.checkbox}>
             <input
@@ -202,18 +261,7 @@ export const TestimonialForm: React.FC<TestimonialFormProps> = ({
               checked={formData.is_featured}
               onChange={(e) => setFormData(prev => ({ ...prev, is_featured: e.target.checked }))}
             />
-            Featured
-          </label>
-        </div>
-        <div className={styles.formGroup}>
-          <label className={styles.checkbox}>
-            <input
-              type="checkbox"
-              name="show_on_homepage"
-              checked={formData.show_on_homepage}
-              onChange={(e) => setFormData(prev => ({ ...prev, show_on_homepage: e.target.checked }))}
-            />
-            Show on Homepage
+            Featured on Homepage
           </label>
         </div>
       </div>
@@ -223,7 +271,14 @@ export const TestimonialForm: React.FC<TestimonialFormProps> = ({
           Cancel
         </button>
         <button type="submit" className={styles.submitBtn} disabled={loading}>
-          {loading ? 'Saving...' : initialData ? 'Update' : 'Create'}
+          {loading ? (
+            <>
+              <Loader size={16} className={styles.spinner} />
+              Saving...
+            </>
+          ) : (
+            initialData ? 'Update Testimonial' : 'Create Testimonial'
+          )}
         </button>
       </div>
     </form>
