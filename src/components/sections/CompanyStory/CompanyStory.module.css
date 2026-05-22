@@ -1,6 +1,6 @@
 /* src/components/sections/CompanyStory/CompanyStory.module.css */
 .companyStory {
-  padding: 80px 0;
+  padding: 40px 0 80px 0;  /* Changed from 80px 0 to 40px 0 80px 0 - reduces top padding */
   background: #ffffff;
   position: relative;
   overflow: hidden;
@@ -180,7 +180,7 @@
 /* Responsive */
 @media (max-width: 1024px) {
   .companyStory {
-    padding: 60px 0;
+    padding: 35px 0 60px 0;  /* Reduced top padding for tablet */
   }
 
   .valuesGrid {
@@ -208,7 +208,7 @@
 
 @media (max-width: 768px) {
   .companyStory {
-    padding: 50px 0;
+    padding: 30px 0 50px 0;  /* Reduced top padding for mobile */
   }
 
   .statsRow {
@@ -270,7 +270,7 @@
 
 @media (max-width: 480px) {
   .companyStory {
-    padding: 40px 0;
+    padding: 25px 0 40px 0;  /* Further reduced top padding for small mobile */
   }
 
   .statsRow {
@@ -327,6 +327,10 @@
 }
 
 @media (max-width: 360px) {
+  .companyStory {
+    padding: 20px 0 35px 0;  /* Minimum top padding for very small screens */
+  }
+
   .statsRow {
     flex-direction: column;
     align-items: center;

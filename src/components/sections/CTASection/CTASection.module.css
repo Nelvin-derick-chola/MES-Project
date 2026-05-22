@@ -1,3 +1,8 @@
+/* ============================================ */
+/* MERCURY EXPRESS - CTA SECTION               */
+/* Complete Responsive CSS Module              */
+/* ============================================ */
+
 .ctaSection {
   width: 100%;
   max-width: 100%;
@@ -79,6 +84,10 @@
   background: #f8fafc;
 }
 
+.ctaPrimary:active {
+  transform: translateY(0);
+}
+
 .ctaSecondary {
   padding: 12px 28px;
   background: transparent;
@@ -97,6 +106,10 @@
   color: #22c55e;
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.ctaSecondary:active {
+  transform: translateY(0);
 }
 
 /* Right Content - QR Code */
@@ -139,20 +152,37 @@
   margin-bottom: 16px;
 }
 
-.qrCodeIcon {
-  font-size: 24px;
+.whatsappIconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  border-radius: 50%;
+}
+
+.whatsappIcon {
+  color: white;
+  stroke-width: 1.5;
 }
 
 .qrCodeTitle {
   font-size: 1rem;
   font-weight: 700;
   color: #0f172a;
+  margin: 0;
 }
 
 .qrCodeContainer {
   display: flex;
   justify-content: center;
-  margin-bottom: 16px;
+  align-items: center;
+  margin-bottom: 1.25rem;
+  padding: 0.5rem;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .qrCodeLink {
@@ -165,10 +195,10 @@
 }
 
 .qrCode {
-  border-radius: 12px;
-  padding: 8px;
-  background: white;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: block;
+  width: 180px;
+  height: 180px;
+  border-radius: 16px;
 }
 
 .qrCodeInstruction {
@@ -179,7 +209,11 @@
 }
 
 .qrCodeButton {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
   padding: 10px 20px;
   background: #25D366;
   color: white;
@@ -198,34 +232,87 @@
   box-shadow: 0 6px 16px rgba(37, 211, 102, 0.25);
 }
 
-/* Responsive */
+.qrCodeButton:active {
+  transform: translateY(0);
+}
+
+/* ============================================ */
+/* RESPONSIVE STYLES - FULLY OPTIMIZED         */
+/* ============================================ */
+
+/* Tablet Landscape (1024px) */
+@media (max-width: 1024px) {
+  .ctaWrapper {
+    gap: 28px;
+  }
+  
+  .qrCode {
+    width: 160px;
+    height: 160px;
+  }
+}
+
+/* Tablet Portrait (900px) */
 @media (max-width: 900px) {
   .ctaWrapper {
     grid-template-columns: 1fr;
     max-width: 600px;
   }
   
+  .ctaContent {
+    text-align: center;
+  }
+  
+  .ctaButtons {
+    justify-content: center;
+  }
+  
   .qrCodeWrapper {
-    max-width: 350px;
+    max-width: 380px;
     margin: 0 auto;
+  }
+  
+  .qrCodeCard {
+    padding: 28px 24px;
   }
 }
 
-@media (max-width: 768px) {
+/* Mobile Landscape (640px) */
+@media (max-width: 640px) {
   .ctaCard {
-    padding: 32px 24px;
+    padding: 28px 24px;
     border-radius: 20px;
   }
   
   .ctaTitle {
-    font-size: 1.3rem;
+    font-size: 1.35rem;
+  }
+  
+  .ctaText {
+    font-size: 0.85rem;
+  }
+  
+  .ctaPrimary,
+  .ctaSecondary {
+    padding: 10px 24px;
+    font-size: 0.85rem;
+  }
+  
+  .qrCodeWrapper {
+    max-width: 340px;
   }
   
   .qrCodeCard {
-    padding: 20px 16px;
+    padding: 24px 20px;
+  }
+  
+  .qrCode {
+    width: 150px;
+    height: 150px;
   }
 }
 
+/* Mobile Portrait (480px) - CRITICAL FOR BUTTONS */
 @media (max-width: 480px) {
   .ctaSection {
     padding: 20px 16px;
@@ -242,6 +329,7 @@
   
   .ctaTitle {
     font-size: 1.2rem;
+    margin-bottom: 10px;
   }
   
   .ctaText {
@@ -249,9 +337,11 @@
     margin-bottom: 20px;
   }
   
+  /* ✅ BUTTONS STACK VERTICALLY ON MOBILE */
   .ctaButtons {
     flex-direction: column;
     gap: 10px;
+    width: 100%;
   }
   
   .ctaPrimary,
@@ -260,32 +350,61 @@
     padding: 12px 20px;
     white-space: normal;
     text-align: center;
+    font-size: 0.85rem;
+  }
+  
+  /* QR Code Section Mobile Optimizations */
+  .qrCodeWrapper {
+    max-width: 100%;
   }
   
   .qrCodeCard {
-    padding: 18px 14px;
+    padding: 20px 16px;
+    border-radius: 16px;
+  }
+  
+  .whatsappIconWrapper {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .whatsappIconWrapper svg {
+    width: 18px;
+    height: 18px;
   }
   
   .qrCodeTitle {
     font-size: 0.9rem;
   }
   
-  .qrCodeContainer svg {
-    width: 120px !important;
-    height: 120px !important;
+  .qrCodeContainer {
+    margin-bottom: 1rem;
+    padding: 0.4rem;
+  }
+  
+  .qrCode {
+    width: 130px !important;
+    height: 130px !important;
   }
   
   .qrCodeInstruction {
     font-size: 0.7rem;
+    margin-bottom: 12px;
   }
   
   .qrCodeButton {
-    padding: 8px 16px;
+    padding: 10px 16px;
     font-size: 0.75rem;
+  }
+  
+  .qrCodeButton svg {
+    width: 14px;
+    height: 14px;
   }
 }
 
-@media (max-width: 360px) {
+/* Small Mobile (375px) */
+@media (max-width: 375px) {
   .ctaSection {
     padding: 16px 12px;
   }
@@ -298,13 +417,83 @@
     font-size: 1.1rem;
   }
   
-  .qrCodeContainer svg {
-    width: 100px !important;
-    height: 100px !important;
+  .ctaText {
+    font-size: 0.75rem;
+  }
+  
+  .ctaPrimary,
+  .ctaSecondary {
+    padding: 10px 16px;
+    font-size: 0.8rem;
+  }
+  
+  .qrCodeCard {
+    padding: 16px 12px;
+  }
+  
+  .qrCode {
+    width: 110px !important;
+    height: 110px !important;
+  }
+  
+  .qrCodeTitle {
+    font-size: 0.85rem;
+  }
+  
+  .qrCodeInstruction {
+    font-size: 0.65rem;
+  }
+  
+  .qrCodeButton {
+    padding: 8px 12px;
+    font-size: 0.7rem;
   }
 }
 
-/* Reduced Motion */
+/* Extra Small Mobile (320px) */
+@media (max-width: 320px) {
+  .ctaTitle {
+    font-size: 1rem;
+  }
+  
+  .ctaText {
+    font-size: 0.7rem;
+  }
+  
+  .qrCode {
+    width: 100px !important;
+    height: 100px !important;
+  }
+  
+  .qrCodeTitle {
+    font-size: 0.8rem;
+  }
+  
+  .qrCodeInstruction {
+    font-size: 0.6rem;
+  }
+}
+
+/* Touch-Friendly Improvements for Mobile */
+@media (hover: none) and (pointer: coarse) {
+  .ctaPrimary,
+  .ctaSecondary,
+  .qrCodeButton {
+    min-height: 44px;
+  }
+  
+  .ctaPrimary:active,
+  .ctaSecondary:active,
+  .qrCodeButton:active {
+    transform: scale(0.98);
+  }
+  
+  .qrCodeLink:active {
+    transform: scale(0.96);
+  }
+}
+
+/* Reduced Motion Preference */
 @media (prefers-reduced-motion: reduce) {
   .ctaContent,
   .qrCodeWrapper {
@@ -319,110 +508,48 @@
   .qrCodeCard:hover {
     transform: none;
   }
+  
+  .qrCodeLink:hover {
+    transform: none;
+  }
 }
 
-/* QR Code Container - Larger and clearer */
-.qrCodeContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 1.25rem;
-  padding: 0.5rem;
-  background: white;
-  border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .ctaCard {
+    border: 2px solid white;
+  }
+  
+  .qrCodeCard {
+    border: 2px solid #0f172a;
+  }
+  
+  .ctaPrimary {
+    border: 1px solid #22c55e;
+  }
+  
+  .ctaSecondary {
+    border: 2px solid white;
+  }
 }
 
-.qrCodeLink {
-  display: inline-block;
-  transition: transform 0.3s ease;
-}
-
-.qrCodeLink:hover {
-  transform: scale(1.02);
-}
-
-/* QR Code - Increased size and better contrast */
-.qrCode {
-  display: block;
-  width: 180px;
-  height: 180px;
-  border-radius: 16px;
-}
-
-/* QR Code Instruction */
-.qrCodeInstruction {
-  font-size: 0.75rem;
-  color: #6b7280;
-  text-align: center;
-  margin-bottom: 1rem;
-  line-height: 1.4;
-}
-
-/* QR Code Card - Better spacing */
-.qrCodeCard {
-  background: white;
-  border-radius: 24px;
-  padding: 1.5rem;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
-
-.qrCodeCard:hover {
-  transform: translateY(-4px);
-}
-
-/* WhatsApp Icon Wrapper */
-.whatsappIconWrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-  border-radius: 50%;
-}
-
-.whatsappIcon {
-  color: white;
-  stroke-width: 1.5;
-}
-
-/* QR Code Header */
-.qrCodeHeader {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
-}
-
-.qrCodeTitle {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #1f2937;
-  margin: 0;
-}
-
-/* QR Code Button */
-.qrCodeButton {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  width: 100%;
-  padding: 0.75rem 1rem;
-  background: #25D366;
-  color: white;
-  text-decoration: none;
-  border-radius: 40px;
-  font-size: 0.875rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  border: none;
-  cursor: pointer;
-}
-
-.qrCodeButton:hover {
-  background: #128C7E;
-  transform: translateY(-2px);
+/* Print Styles */
+@media print {
+  .ctaSection {
+    background: white;
+    padding: 20px;
+  }
+  
+  .ctaCard {
+    background: #22c55e;
+    print-color-adjust: exact;
+  }
+  
+  .qrCodeButton {
+    display: none;
+  }
+  
+  .qrCodeInstruction {
+    color: black;
+  }
 }

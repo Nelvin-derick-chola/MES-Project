@@ -250,4 +250,92 @@
     width: 36px;
     height: 36px;
   }
+
+  /* Add these to your existing CSS file */
+
+/* Carousel Wrapper - for hover and touch events */
+.carouselWrapper {
+  width: 100%;
+  position: relative;
+}
+
+/* Add animation for smooth transitions */
+.testimonialCard {
+  position: relative;
+  max-width: 640px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 20px;
+  padding: 40px 48px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  transition: all 0.3s ease;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Ensure stars are properly displayed */
+.star {
+  transition: transform 0.2s ease;
+}
+
+/* Make dots clickable with better feedback */
+.dot {
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.dot:hover {
+  transform: scale(1.2);
+}
+
+.activeDot {
+  background: #22c55e;
+  width: 24px;
+  border-radius: 4px;
+}
+
+/* Add touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+  .arrowButton {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  
+  .dot {
+    min-width: 8px;
+    min-height: 8px;
+  }
+}
+
+/* Add responsive improvements */
+@media (max-width: 480px) {
+  .testimonialCard {
+    padding: 28px 20px;
+  }
+  
+  .quote {
+    font-size: 0.95rem;
+  }
+  
+  .author {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+  
+  .authorInfo {
+    text-align: center;
+  }
+}
 }

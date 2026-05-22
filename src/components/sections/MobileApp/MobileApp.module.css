@@ -1,3 +1,8 @@
+/* ============================================ */
+/* MERCURY EXPRESS - MOBILE APP SECTION        */
+/* Complete CSS Module for React Component     */
+/* ============================================ */
+
 .mobileApp {
   width: 100%;
   max-width: 100%;
@@ -44,7 +49,7 @@
   color: #22c55e;
 }
 
-/* Features - Compact */
+/* Features */
 .features {
   display: flex;
   flex-direction: column;
@@ -103,7 +108,10 @@
   color: #64748b;
 }
 
-/* Store Buttons */
+/* ============================================ */
+/* STORE BUTTONS - FULLY RESPONSIVE            */
+/* ============================================ */
+
 .storeButtons {
   display: flex;
   flex-wrap: wrap;
@@ -117,6 +125,8 @@
   border: none;
   cursor: pointer;
   transition: transform 0.2s ease;
+  display: inline-flex;
+  align-items: center;
 }
 
 .storeButton:hover {
@@ -128,10 +138,11 @@
   width: auto;
 }
 
-/* APK Download Button */
+/* APK Button - Styled but commented in your component */
 .apkButton {
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
   padding: 0 18px;
   height: 38px;
@@ -144,6 +155,7 @@
   cursor: pointer;
   transition: all 0.2s ease;
   box-shadow: 0 2px 8px rgba(34, 197, 94, 0.2);
+  white-space: nowrap;
 }
 
 .apkButton:hover {
@@ -157,7 +169,7 @@
   height: 16px;
 }
 
-/* Right - Mockup Image with Animations */
+/* Right - Mockup Image */
 .mockupWrapper {
   display: flex;
   justify-content: center;
@@ -214,7 +226,6 @@
   box-shadow: 0 30px 60px rgba(34, 197, 94, 0.15);
 }
 
-/* Glow Effect */
 .mockupGlow {
   position: absolute;
   top: 20px;
@@ -240,9 +251,10 @@
 }
 
 /* ============================================ */
-/* RESPONSIVE STYLES - MOBILE OPTIMIZED */
+/* RESPONSIVE STYLES - MOBILE OPTIMIZED        */
 /* ============================================ */
 
+/* Tablet Landscape (1024px) */
 @media (max-width: 1024px) {
   .grid {
     gap: 32px;
@@ -253,6 +265,7 @@
   }
 }
 
+/* Tablet Portrait (900px) */
 @media (max-width: 900px) {
   .grid {
     grid-template-columns: 1fr;
@@ -265,7 +278,6 @@
     text-align: center;
   }
   
-  /* ✅ Center feature items on tablet/mobile */
   .featureItem {
     text-align: left;
     max-width: 320px;
@@ -283,6 +295,7 @@
   }
 }
 
+/* Small Tablet (768px) */
 @media (max-width: 768px) {
   .mobileApp {
     padding: 32px 20px;
@@ -305,6 +318,27 @@
   }
 }
 
+/* Medium Mobile (640px) - Larger touch targets */
+@media (max-width: 640px) {
+  .storeButtons {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+  
+  .storeButton img {
+    height: 44px; /* Larger touch target */
+  }
+  
+  .apkButton {
+    padding: 0 20px;
+    height: 44px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Mobile Portrait (480px) - VERTICAL STACKING FOR BUTTONS */
 @media (max-width: 480px) {
   .mobileApp {
     padding: 28px 16px;
@@ -315,7 +349,6 @@
     margin-bottom: 20px;
   }
   
-  /* ✅ Center feature items vertically and horizontally */
   .features {
     align-items: center;
     gap: 16px;
@@ -351,31 +384,33 @@
     line-height: 1.4;
   }
   
-  /* ✅ Stack buttons vertically on mobile */
+  /* ✅ CRITICAL: Stack buttons vertically on mobile */
   .storeButtons {
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     gap: 12px;
     width: 100%;
-    max-width: 200px;
+    max-width: 260px;
     margin: 0 auto;
   }
   
   .storeButton {
     width: 100%;
+    display: flex;
+    justify-content: center;
   }
   
   .storeButton img {
-    height: 40px;
-    width: 100%;
-    object-fit: contain;
+    height: 48px; /* Even larger for better touch */
+    width: auto;
   }
   
   .apkButton {
     width: 100%;
     justify-content: center;
-    padding: 10px 16px;
-    height: auto;
+    padding: 12px 16px;
+    height: 48px;
+    font-size: 0.9rem;
     gap: 8px;
   }
   
@@ -384,7 +419,6 @@
     height: 18px;
   }
   
-  /* ✅ Center mockup image */
   .mockupWrapper {
     max-width: 220px;
   }
@@ -399,7 +433,6 @@
     border-width: 4px;
   }
   
-  /* ✅ Adjust glow for smaller screens */
   .mockupGlow {
     top: 10px;
     left: 10px;
@@ -408,6 +441,7 @@
   }
 }
 
+/* Small Mobile (375px) */
 @media (max-width: 375px) {
   .mobileApp {
     padding: 24px 14px;
@@ -437,11 +471,16 @@
   }
   
   .storeButtons {
-    max-width: 180px;
+    max-width: 220px;
+  }
+  
+  .storeButton img {
+    height: 44px;
   }
   
   .apkButton {
-    font-size: 0.8rem;
+    height: 44px;
+    font-size: 0.85rem;
   }
   
   .mockupWrapper {
@@ -453,6 +492,7 @@
   }
 }
 
+/* Extra Small Mobile (320px) */
 @media (max-width: 320px) {
   .mobileApp {
     padding: 20px 12px;
@@ -473,7 +513,16 @@
   }
   
   .storeButtons {
-    max-width: 160px;
+    max-width: 180px;
+  }
+  
+  .storeButton img {
+    height: 40px;
+  }
+  
+  .apkButton {
+    height: 40px;
+    font-size: 0.8rem;
   }
   
   .mockupWrapper {
@@ -485,7 +534,7 @@
   }
 }
 
-/* Reduced Motion */
+/* Reduced Motion Preference */
 @media (prefers-reduced-motion: reduce) {
   .content,
   .featureItem,

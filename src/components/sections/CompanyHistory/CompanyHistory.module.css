@@ -1,6 +1,6 @@
 /* src/components/sections/CompanyHistory/CompanyHistory.module.css */
 .historySection {
-  padding: 80px 0;
+  padding: 40px 0 80px 0;  /* Changed from 80px 0 to 40px 0 80px 0 - reduces top padding */
   background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
   position: relative;
   overflow: hidden;
@@ -188,9 +188,15 @@
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+  .historySection {
+    padding: 35px 0 60px 0;  /* Reduced top padding for tablet */
+  }
+}
+
 @media (max-width: 768px) {
   .historySection {
-    padding: 60px 0;
+    padding: 30px 0 50px 0;  /* Reduced top padding for mobile */
   }
 
   .timeline::before {
@@ -235,7 +241,7 @@
 
 @media (max-width: 480px) {
   .historySection {
-    padding: 40px 0;
+    padding: 25px 0 40px 0;  /* Further reduced top padding for small mobile */
   }
 
   .header {
@@ -276,6 +282,12 @@
 
   .statNumber {
     font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .historySection {
+    padding: 20px 0 35px 0;  /* Minimum top padding for very small screens */
   }
 }
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container } from '../../layout/Container/Container';
 import styles from './WhoWeAre.module.css';
-import whoWeAreImage from '../../../assets/images/who-we-are.jpeg';
+import whoWeAreImage from '../../../assets/images/who-we-are1.png';
 
 export const WhoWeAre: React.FC = () => {
   return (
