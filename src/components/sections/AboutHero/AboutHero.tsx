@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container } from '../../layout/Container/Container';
-import { MapPin, Globe, Users, Truck, CheckCircle, Clock, Shield, Award } from 'lucide-react';
+//import { MapPin, Globe, Users, Truck, CheckCircle, Clock, Shield, Award } from 'lucide-react';
 import styles from './AboutHero.module.css';
 import aboutHeroImage from '../../../assets/images/about-hero.png';
 

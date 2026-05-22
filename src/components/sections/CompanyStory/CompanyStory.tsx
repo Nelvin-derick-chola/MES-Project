@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container } from '../../layout/Container/Container';
-import { Quote, Heart, Shield, Zap, Globe, Users } from 'lucide-react';
+import { Quote} from 'lucide-react';
 import styles from './CompanyStory.module.css';
 
 export const CompanyStory: React.FC = () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container } from '../../layout/Container/Container';
-import { MapPin, Calendar, Shield, Download } from 'lucide-react';
+import { MapPin, Calendar, Shield} from 'lucide-react';
 import appMockup from '../../../assets/images/mes-app.jpeg';
 import styles from './MobileApp.module.css';
 

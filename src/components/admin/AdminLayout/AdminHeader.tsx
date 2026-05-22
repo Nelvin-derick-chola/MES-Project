@@ -28,13 +28,13 @@ export const AdminHeader: React.FC<AdminHeaderProps> = ({
   //   window.location.href = '/admin/login';
   // };
 
-  const notifications = [
-    { id: 1, title: 'New testimonial submitted', time: '5 minutes ago', unread: true },
-    { id: 2, title: 'Team member updated', time: '1 hour ago', unread: true },
-    { id: 3, title: 'Service created', time: '3 hours ago', unread: false },
-  ];
+  // const notifications = [
+  //   { id: 1, title: 'New testimonial submitted', time: '5 minutes ago', unread: true },
+  //   { id: 2, title: 'Team member updated', time: '1 hour ago', unread: true },
+  //   { id: 3, title: 'Service created', time: '3 hours ago', unread: false },
+  // ];
 
-  const unreadCount = notifications.filter(n => n.unread).length;
+  // const unreadCount = notifications.filter(n => n.unread).length;
 
   return (
     <header className={styles.header}>

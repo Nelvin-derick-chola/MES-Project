@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Upload, X, Loader, Star } from 'lucide-react';
+import React, { useState} from 'react';
+import { Upload, X, Loader } from 'lucide-react';
 import { RatingStars } from './RatingStars';
 import styles from './Testimonials.module.css';
 
@@ -72,13 +72,13 @@ export const TestimonialForm: React.FC<TestimonialFormProps> = ({
     setAvatarPreview(null);
   };
 
-  useEffect(() => {
-    return () => {
-      if (avatarPreview && avatarPreview.startsWith('blob:')) {
-        URL.revokeObjectURL(avatarPreview);
-      }
-    };
-  }, [avatarPreview]);
+  // useEffect(() => {
+  //   return () => {
+  //     if (avatarPreview && avatarPreview.startsWith('blob:')) {
+  //       URL.revokeObjectURL(avatarPreview);
+  //     }
+  //   };
+  // }, [avatarPreview]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
